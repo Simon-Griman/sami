@@ -13,7 +13,7 @@ class ConsolidadoController extends Controller
 
     public function create()
     {
-        return 'create';
+        return view('consolidado.create');
     }
 
     public function edit()
