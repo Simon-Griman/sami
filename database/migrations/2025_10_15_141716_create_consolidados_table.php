@@ -18,10 +18,11 @@ class CreateConsolidadosTable extends Migration
             $table->date('fecha');
             $table->unsignedBigInteger('instalacion_id');
             $table->unsignedBigInteger('ubicacion_id');
-            $table->string('cliente');
+            $table->string('cliente', 45);
             $table->unsignedBigInteger('producto_id');
-            $table->string('segregacion');
-            $table->string('destino');
+            $table->string('segregacion', 45);
+            $table->string('destino', 45);
+            $table->enum('borrado', [0, 1])->default('0');
             $table->foreign('instalacion_id')->references('id')->on('instalacions')->onDelete('cascade');
             $table->foreign('ubicacion_id')->references('id')->on('ubicacions')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');

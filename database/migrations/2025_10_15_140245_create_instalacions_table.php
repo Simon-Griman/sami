@@ -15,7 +15,7 @@ class CreateInstalacionsTable extends Migration
     {
         Schema::create('instalacions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre', 45)->unique();
             $table->timestamps();
         });
     }

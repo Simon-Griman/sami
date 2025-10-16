@@ -15,7 +15,7 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'SAMH | ',
+    'title_prefix' => 'SAMI | ',
     'title_postfix' => '',
 
     /*
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>SAMH</b>',
+    'logo' => '<b>SAMI</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -292,11 +292,6 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'buscar',
-            'topnav_right' => true,
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
@@ -304,7 +299,7 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'buscar',
         ],
         [
             'text'        => 'Inicio',
@@ -312,24 +307,14 @@ return [
             'icon'        => 'fas fa-home',
         ],
         [
-            'text'        => 'Equipos',
-            'url'         => 'admin/pages',
+            'text'        => 'Consolidado',
+            'url'         => 'consolidado',
             'icon'        => 'fas fa-desktop',
         ],
         [
             'text'        => 'Mis Equipos',
             'url'         => 'admin/pages',
             'icon'        => 'fas fa-desktop',
-        ],
-        [
-            'text'        => 'Solicitar',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-pen',
-        ],
-        [
-            'text'        => 'Solicitudes',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-folder-open',
         ],
         ['header' => 'CONFIGURACIÓN'],
         [
@@ -401,17 +386,17 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    'location' => 'js/select2.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                    'location' => 'css/select2.css',
                 ],
             ],
         ],
