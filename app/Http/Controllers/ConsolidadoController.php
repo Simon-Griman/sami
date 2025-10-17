@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consolidado;
 use Illuminate\Http\Request;
 
 class ConsolidadoController extends Controller
@@ -16,8 +17,10 @@ class ConsolidadoController extends Controller
         return view('consolidado.create');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return 'edit';
+        $consolidado = Consolidado::find($id);
+
+        return view('consolidado.edit', compact('consolidado'));
     }
 }
