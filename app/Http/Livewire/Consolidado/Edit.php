@@ -12,7 +12,7 @@ class Edit extends Component
 {
     public $consolidado;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen;
 
     public function mount()
     {
@@ -23,6 +23,7 @@ class Edit extends Component
         $this->producto = $this->consolidado->producto_id;
         $this->segregacion = $this->consolidado->segregacion;
         $this->destino = $this->consolidado->destino;
+        $this->volumen = $this->consolidado->volumen;
     }
 
     protected $rules = [
@@ -54,6 +55,7 @@ class Edit extends Component
             'producto_id' => $this->producto,
             'segregacion' => $this->segregacion,
             'destino' => $this->destino,
+            'volumen' => $this->volumen,
         ]);
 
         return redirect()

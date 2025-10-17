@@ -17,6 +17,7 @@ class Consolidado extends Model
         'producto_id',
         'segregacion',
         'destino',
+        'volumen',
         'borrado',
         
     ];

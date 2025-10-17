@@ -36,6 +36,7 @@
                             </th>
                             <th><input wire:model="segregacion" type="text" class="form-control"><br>Segregación</th>
                             <th><input wire:model="destino" type="text" class="form-control"><br>Destino</th>
+                            <th><input wire:model="volumen" type="number" class="form-control"><br>Volumen</th>
                             <th colspan="2">Acciones</th>
                         </tr>
                     </thead>
@@ -49,7 +50,7 @@
                             <td>{{ $consolidado->producto }}</td>
                             <td>{{ $consolidado->segregacion }}</td>
                             <td>{{ $consolidado->destino }}</td>
-                            
+                            <td>{{ $consolidado->volumen }}</td>
                             
                             <td style="padding: 2px;">
                                 <a href="{{ route('consolidado.edit', $consolidado->id_consolidado) }}" class="btn btn-primary" title="editar"><i class="fas fa-pen"></i></a>

@@ -13,7 +13,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $borrar, $c_borrar;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $borrar, $c_borrar;
 
     protected $paginationTheme = "bootstrap";
 
@@ -52,6 +52,11 @@ class Index extends Component
         $this->resetPage();
     }
 
+    public function updatingVolumen()
+    {
+        $this->resetPage();
+    }
+
     public function confirBorrar($id)
     {
         $producto = Producto::find(Consolidado::find($id)->producto_id)->nombre;
@@ -76,7 +81,7 @@ class Index extends Component
 
     public function render()
     {
-        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacion', 'destino')
+        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacion', 'destino', 'volumen')
             ->join('instalacions', 'instalacions.id', '=', 'instalacion_id')
             ->join('ubicacions', 'ubicacions.id', '=', 'ubicacion_id')
             ->join('productos', 'productos.id', '=', 'producto_id')
@@ -87,6 +92,7 @@ class Index extends Component
             ->where('productos.nombre', 'LIKE', '%' . $this->producto . '%')
             ->where('segregacion', 'LIKE', '%' . $this->segregacion . '%')
             ->where('destino', 'LIKE', '%' . $this->destino . '%')
+            ->where('volumen', 'LIKE', '%' . $this->volumen . '%')
             ->where('borrado', '0')
             ->paginate()
         ;

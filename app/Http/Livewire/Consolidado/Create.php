@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen;
 
     protected $rules = [
         'fecha' => 'required',
@@ -19,7 +19,8 @@ class Create extends Component
         'cliente' => 'required',
         'producto' => 'required',
         'segregacion' => 'required',
-        'destino' => 'required'
+        'destino' => 'required',
+        'volumen' => 'required|integer'
     ];
 
     public function updated($propertyName)
@@ -39,6 +40,7 @@ class Create extends Component
             'producto_id' => $this->producto,
             'segregacion' => $this->segregacion,
             'destino' => $this->destino,
+            'volumen' => $this->volumen,
         ]);
 
         return redirect()->route('consolidado.index')->with('crear', 'Registrado con Exito');
