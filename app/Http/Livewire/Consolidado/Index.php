@@ -97,9 +97,9 @@ class Index extends Component
             ->paginate()
         ;
 
-        $instalaciones = Instalacion::all();
-        $ubicaciones = Ubicacion::all();
-        $productos = Producto::all();
+        $instalaciones = Instalacion::orderBy('nombre')->get();
+        $ubicaciones = Ubicacion::orderBy('nombre')->get();
+        $productos = Producto::orderBy('nombre')->get();
 
         return view('livewire.consolidado.index', compact('consolidados','instalaciones', 'ubicaciones', 'productos'));
     }

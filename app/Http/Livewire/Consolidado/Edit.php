@@ -66,9 +66,9 @@ class Edit extends Component
 
     public function render()
     {
-        $instalacions = Instalacion::all();
-        $ubicacions = Ubicacion::all();
-        $productos = Producto::all();
+        $instalacions = Instalacion::orderBy('nombre')->get();
+        $ubicacions = Ubicacion::orderBy('nombre')->get();
+        $productos = Producto::orderBy('nombre')->get();    
 
         return view('livewire.consolidado.edit', compact('instalacions', 'ubicacions', 'productos'));
     }
