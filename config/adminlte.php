@@ -312,8 +312,8 @@ return [
             'icon'        => 'fas fa-desktop',
         ],
         [
-            'text'        => 'Mis Equipos',
-            'url'         => 'admin/pages',
+            'text'        => 'Resumen',
+            'url'         => 'resumen',
             'icon'        => 'fas fa-desktop',
         ],
         ['header' => 'CONFIGURACIÓN'],

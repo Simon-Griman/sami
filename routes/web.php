@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConsolidadoController;
+use App\Http\Controllers\ResumenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,6 @@ Route::middleware([
     })->name('home');
 
     Route::resource('/consolidado', ConsolidadoController::class)->names('consolidado');
+
+    Route::get('/resumen', ResumenController::class)->name('resumen');
 });
