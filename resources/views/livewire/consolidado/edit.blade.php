@@ -59,7 +59,12 @@
                             <input type="text" class="form-control @error('volumen') is-invalid @enderror" id="volumen" wire:model="volumen" value="{{ $consolidado->volumen }}">
                             @error('volumen') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
-
+                        <div class="form-group col-12">
+                            <label for="certificado">Cargar Certificado</label><br>
+                            <input type="file" wire:model="certificado" id="certificado"><br>
+                            @error('certificado') <span class="error text-red">{{ $message }}</span> @enderror
+                        </div>
+                        
                         <div class="text-center col-12">
                             <button class="btn btn-primary m-4" type="submit">Actualizar</button>
                             <a href="{{ route('consolidado.index') }}" class="btn btn-danger">Cancelar</a>

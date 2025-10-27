@@ -309,12 +309,12 @@ return [
         [
             'text'        => 'Consolidado',
             'url'         => 'consolidado',
-            'icon'        => 'fas fa-desktop',
+            'icon'        => 'fas fa-check',
         ],
         [
             'text'        => 'Resumen',
             'url'         => 'resumen',
-            'icon'        => 'fas fa-desktop',
+            'icon'        => 'fas fa-list',
         ],
         ['header' => 'CONFIGURACIÓN'],
         [

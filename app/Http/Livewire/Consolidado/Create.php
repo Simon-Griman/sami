@@ -6,11 +6,15 @@ use App\Models\Consolidado;
 use App\Models\Instalacion;
 use App\Models\Producto;
 use App\Models\Ubicacion;
+
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen;
+    use WithFileUploads;
+
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado;
 
     protected $rules = [
         'fecha' => 'required',
@@ -20,7 +24,8 @@ class Create extends Component
         'producto' => 'required',
         'segregacion' => 'required',
         'destino' => 'required',
-        'volumen' => 'required|integer'
+        'volumen' => 'required|integer',
+        'certificado' => 'required|file|mimes:pdf|max:2048',
     ];
 
     public function updated($propertyName)
@@ -32,6 +37,8 @@ class Create extends Component
     {
         $this->validate();
 
+        $nombre = $this->certificado->store('certificados', 'public');
+
         Consolidado::create([
             'fecha' => $this->fecha,
             'instalacion_id' => $this->instalacion,
@@ -41,7 +48,10 @@ class Create extends Component
             'segregacion' => $this->segregacion,
             'destino' => $this->destino,
             'volumen' => $this->volumen,
+            'certificado' => $nombre
         ]);
+
+        //$this->reset('certificado');
 
         return redirect()->route('consolidado.index')->with('crear', 'Registrado con Exito');
     }

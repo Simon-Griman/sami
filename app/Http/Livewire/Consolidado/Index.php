@@ -6,6 +6,7 @@ use App\Models\Consolidado;
 use App\Models\Instalacion;
 use App\Models\Producto;
 use App\Models\Ubicacion;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -81,7 +82,7 @@ class Index extends Component
 
     public function render()
     {
-        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacion', 'destino', 'volumen')
+        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacion', 'destino', 'volumen', 'certificado')
             ->join('instalacions', 'instalacions.id', '=', 'instalacion_id')
             ->join('ubicacions', 'ubicacions.id', '=', 'ubicacion_id')
             ->join('productos', 'productos.id', '=', 'producto_id')
@@ -101,6 +102,8 @@ class Index extends Component
         $ubicaciones = Ubicacion::orderBy('nombre')->get();
         $productos = Producto::orderBy('nombre')->get();
 
-        return view('livewire.consolidado.index', compact('consolidados','instalaciones', 'ubicaciones', 'productos'));
+        $certificado = Storage::files('public/certificados');
+
+        return view('livewire.consolidado.index', compact('consolidados','instalaciones', 'ubicaciones', 'productos', 'certificado'));
     }
 }

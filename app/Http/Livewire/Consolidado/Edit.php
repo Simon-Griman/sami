@@ -6,13 +6,17 @@ use App\Models\Consolidado;
 use App\Models\Instalacion;
 use App\Models\Producto;
 use App\Models\Ubicacion;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
+
     public $consolidado;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente;
 
     public function mount()
     {
@@ -24,6 +28,7 @@ class Edit extends Component
         $this->segregacion = $this->consolidado->segregacion;
         $this->destino = $this->consolidado->destino;
         $this->volumen = $this->consolidado->volumen;
+        $this->certificado_existente = $this->consolidado->certificado;
     }
 
     protected $rules = [
@@ -33,7 +38,9 @@ class Edit extends Component
         'cliente' => 'required',
         'producto' => 'required',
         'segregacion' => 'required',
-        'destino' => 'required'
+        'destino' => 'required',
+        'volumen' => 'required',
+        'certificado' => 'nullable|file|mimes:pdf|max:2048',
     ];
 
     public function updated($propertyName)
@@ -47,6 +54,18 @@ class Edit extends Component
 
         $consolidado = Consolidado::find($this->consolidado->id);
 
+        if ($this->certificado)
+        {
+            $nombre = $this->certificado->store('certificados', 'public');
+
+            Storage::disk('public')->delete($this->certificado_existente);
+        }
+
+        else
+        {
+            $nombre = $consolidado->certificado;
+        }
+
         $consolidado->update([
             'fecha' => $this->fecha,
             'instalacion_id' => $this->instalacion,
@@ -56,6 +75,7 @@ class Edit extends Component
             'segregacion' => $this->segregacion,
             'destino' => $this->destino,
             'volumen' => $this->volumen,
+            'certificado' => $nombre
         ]);
 
         return redirect()

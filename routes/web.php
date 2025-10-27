@@ -32,4 +32,15 @@ Route::middleware([
     Route::resource('/consolidado', ConsolidadoController::class)->names('consolidado');
 
     Route::get('/resumen', ResumenController::class)->name('resumen');
+
+    Route::get('/ver-pdf/{certificado}', function ($certificado) {
+        
+        $path = storage_path('app/public/certificados/' . $certificado);
+        
+        if (file_exists($path)) {
+            return response()->file($path);
+        }
+    
+        return abort(404, 'El archivo no existe.');
+    });
 });
