@@ -20,8 +20,8 @@ class UbicacionSeeder extends Seeder
         Ubicacion::create(['nombre' => 'Puerto Miranda']);
         Ubicacion::create(['nombre' => 'San Lorenzo']);
         Ubicacion::create(['nombre' => 'El Vigía']);
-        Ubicacion::create(['nombre' => 'RCP Cardón']);
-        Ubicacion::create(['nombre' => 'RCP Amuay']);
+        Ubicacion::create(['nombre' => 'CRP Cardón']);
+        Ubicacion::create(['nombre' => 'CRP Amuay']);
         Ubicacion::create(['nombre' => 'El Palito']);
         Ubicacion::create(['nombre' => 'Yagua']);
         Ubicacion::create(['nombre' => 'Barquisimeto']);

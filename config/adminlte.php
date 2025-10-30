@@ -292,6 +292,10 @@ return [
     'menu' => [
         // Navbar items:
         [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true,
+        ],
+        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
