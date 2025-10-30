@@ -17,6 +17,11 @@ class Resumen extends Component
         $this->selectedMonth = date('m');
     }
 
+    public function pdf()
+    {
+        return redirect()->route('resumen.pdf', ['selectedMonth' => $this->selectedMonth, 'selectedYear' => $this->selectedYear]);
+    }
+
     public function render()
     {
         $resumen = Consolidado::select('fecha', 'ubicacions.nombre as ubicacion', DB::raw('SUM(volumen) as total_cantidad'), DB::raw('COUNT(ubicacions.nombre) as certificados'))

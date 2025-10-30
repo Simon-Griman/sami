@@ -54,6 +54,11 @@
                     </tbody>
                 </table>
             </div>
+            <div class="card-footer">
+                <div class="text-center">
+                    <a href="{{ route('resumen.pdf', ['selectedMonth' => $selectedMonth, 'selectedYear' => $selectedYear]) }}" class="btn btn-danger" target="_blank">Generar Pdf</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
