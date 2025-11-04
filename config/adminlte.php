@@ -327,6 +327,11 @@ return [
             'icon'        => 'far fa-clipboard',
         ],
         [
+            'text'        => 'Roles',
+            'url'         => 'roles',
+            'icon'        => 'fas fa-wrench',
+        ],
+        [
             'text' => 'profile',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',

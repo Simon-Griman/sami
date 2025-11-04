@@ -18,6 +18,6 @@ class UserSeeder extends Seeder
             'name' => 'Simón Grimán', 
             'email' => 'simongrimanv@hotmail.com', 
             'password' => bcrypt('simonG20'),
-        ]);
+        ])->assignRole('Super-Admin');
     }
 }

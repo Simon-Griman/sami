@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConsolidadoController;
 use App\Http\Controllers\ResumenController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,4 +45,6 @@ Route::middleware([
     
         return abort(404, 'El archivo no existe.');
     });
+
+    Route::resource('/roles', RoleController::class)->except('show')->names('roles');
 });

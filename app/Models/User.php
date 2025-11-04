@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
+    use HasRoles;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
@@ -63,12 +65,12 @@ class User extends Authenticatable
 
     public function adminlte_desc(){
 
-        //$myuser = Auth::User();
+        $myuser = Auth::User();
 
-        //$rolUsers = $myuser->getRoleNames();
+        $rolUsers = $myuser->getRoleNames();
 
-        //return $rolUsers;
+        return $rolUsers;
 
-        return 'Admin'; //provisional
+        //return 'Admin'; //provisional
     }
 }
