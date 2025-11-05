@@ -322,9 +322,9 @@ return [
         ],
         ['header' => 'CONFIGURACIÓN'],
         [
-            'text'        => 'Nombre de Equipos',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-clipboard',
+            'text'        => 'Usuarios',
+            'url'         => 'users',
+            'icon'        => 'fas fa-users',
         ],
         [
             'text'        => 'Roles',

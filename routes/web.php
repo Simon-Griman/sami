@@ -3,6 +3,7 @@
 use App\Http\Controllers\ConsolidadoController;
 use App\Http\Controllers\ResumenController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,8 @@ Route::middleware([
     
         return abort(404, 'El archivo no existe.');
     });
+
+    Route::resource('/users', UserController::class)->except('show', 'store', 'destroy')->middleware('can:users.index')->names('users');
 
     Route::resource('/roles', RoleController::class)->except('show')->names('roles');
 });
