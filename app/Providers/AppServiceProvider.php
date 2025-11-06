@@ -27,8 +27,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        $cintilloModel = Cintillo::where('activo', 2)->first();
+
+        if ($cintilloModel)
+        {
+            $cintillo = $cintilloModel->nombre;
+        }
+        else
+        {
+            $cintillo = '';
+        }
         
-        $cintillo = Cintillo::where('activo', 2)->first()->nombre;
         View::share('cintillo', $cintillo);
     }
 }
