@@ -10,6 +10,7 @@
     </style>
 </head>
 <body>
+    <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%">
     <div class="row d-flex justify-content-center">
         <h1>Resumen Consolidado {{ $selectedMonth }}/{{ $selectedYear }}</h1>
         <div class="card mt-2" style="max-height: 70vh;">

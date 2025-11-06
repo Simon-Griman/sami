@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CintilloController;
 use App\Http\Controllers\ConsolidadoController;
 use App\Http\Controllers\ResumenController;
 use App\Http\Controllers\RoleController;
@@ -50,4 +51,6 @@ Route::middleware([
     Route::resource('/users', UserController::class)->except('show', 'store', 'destroy')->middleware('can:users.index')->names('users');
 
     Route::resource('/roles', RoleController::class)->except('show')->names('roles');
+
+    Route::get('/cintillos', CintilloController::class)->middleware('can:cintillos')->name('cintillos');
 });

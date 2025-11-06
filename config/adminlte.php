@@ -322,6 +322,11 @@ return [
         ],
         ['header' => 'CONFIGURACIÓN'],
         [
+            'text'        => 'Cintillos',
+            'url'         => 'cintillos',
+            'icon'        => 'fas fa-list',
+        ],
+        [
             'text'        => 'Usuarios',
             'url'         => 'users',
             'icon'        => 'fas fa-users',

@@ -22,8 +22,8 @@
     @stop
     @endif
 
-    {{-- <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%">
-    <br><br> --}}
+    <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%">
+    <br>
     
     @can('users.create')
         <div class="text-center p-2">

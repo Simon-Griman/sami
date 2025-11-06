@@ -23,7 +23,7 @@
         </script>
     @stop
     @endif
-    {{-- <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%"> --}}
+    <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%">
     <br><br>
     <div class="card">
         <div class="card-body">
