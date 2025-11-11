@@ -14,9 +14,15 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $borrar, $c_borrar;
+    public $fecha_inicio, $fecha_final, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $borrar, $c_borrar;
 
     protected $paginationTheme = "bootstrap";
+
+    public function mount()
+    {
+        $this->fecha_inicio = Consolidado::min('fecha');
+        $this->fecha_final = Consolidado::max('fecha');
+    }
 
     public function updatingFecha()
     {
@@ -86,7 +92,7 @@ class Index extends Component
             ->join('instalacions', 'instalacions.id', '=', 'instalacion_id')
             ->join('ubicacions', 'ubicacions.id', '=', 'ubicacion_id')
             ->join('productos', 'productos.id', '=', 'producto_id')
-            ->where('fecha', 'LIKE', '%' . $this->fecha . '%')
+            ->whereBetween('fecha', [$this->fecha_inicio, $this->fecha_final])
             ->where('instalacions.nombre', 'LIKE', '%' . $this->instalacion . '%')
             ->where('ubicacions.nombre', 'LIKE', '%' . $this->ubicacion . '%')
             ->where('cliente', 'LIKE', '%' . $this->cliente . '%')

@@ -5,7 +5,9 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <tr>
-                            <th><input wire:model="fecha" type="date" class="form-control"><br>Fecha</th>
+                            <th><input wire:model="fecha_inicio" type="date" class="form-control">
+                                <input wire:model="fecha_final" type="date" class="form-control">
+                                <br>Fecha</th>
                             <th>
                                 <select class="form-control" wire:model="instalacion">
                                     <option value="">Todo</option>                            
@@ -96,9 +98,7 @@
                     </div>
                 </div>
             </div>
-
-            </div>
-            <div class="card-footer">
+            <div class="card-footer d-flex justify-content-center">
                 {{ $consolidados->links() }}
             </div>
         </div>
