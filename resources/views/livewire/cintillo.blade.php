@@ -6,19 +6,25 @@
                     <thead>
                         <tr>
                             <th>Cintillo</th>
+                            @if (auth()->user()->can('cintillos.edit') || auth()->user()->can('cintillos.delete'))
                             <th colspan="2" class="text-center">Acciones</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($cintillos as $item)
                         <tr>
                             <td><img src="{{ url('storage/' . $item->nombre) }}" alt="" class="cintillo" style="width:100%"></td>
+                            @can('cintillos.activar')
                             <td>
                                 <a wire:click="modalActivar({{ $item->id }})" class="btn btn-success" data-toggle="modal" data-target="#activar">Activar</a>
                             </td>
+                            @endcan
+                            @can('cintillos.delete')
                             <td>
                                 <a wire:click="confirBorrar({{ $item->id }})" class="btn btn-danger" data-toggle="modal" data-target="#borrar">Borrar</a>
                             </td>
+                            @endcan
                         </tr>
                     @endforeach
                     </tbody>
@@ -32,7 +38,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <h5>¿Realmente desea activar el cintillo: <b>{{ $cintillo_activar }}?</b></h5>
+                                <h5>¿Realmente desea activar el cintillo?</b></h5>
                                 <p>Este cintillo se vera en todas las pestañas y archivos</p>
                             </div>
                             <div class="modal-footer">

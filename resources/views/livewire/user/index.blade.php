@@ -8,6 +8,7 @@
                         <th><input wire:model="nombre" type="text" class="form-control" placeholder="Buscar:"><br>Nombre</th>
                         <th><input wire:model="email" type="text" class="form-control" placeholder="Buscar:"><br>Email</th>
                         <th><input wire:model="cedula" type="text" class="form-control" placeholder="Buscar:"><br>Cedula</th>
+                        <th colspan="2">Acciones</th>
                     </thead>
                     @if ($users->count())
                     <tbody>

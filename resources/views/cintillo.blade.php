@@ -12,9 +12,11 @@
     @livewireStyles
     <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%">
 
+    @can('cintillos.create')
     <div class="text-center mt-2">
         <a class="btn btn-primary" data-toggle="modal" data-target="#crear">Nuevo Cintillo</a>
     </div>  
+    @endcan
 
     @livewire('cintillo')
     @livewireScripts

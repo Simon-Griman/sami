@@ -32,10 +32,10 @@ Route::middleware([
         return view('index');
     })->name('home');
 
-    Route::resource('/consolidado', ConsolidadoController::class)->names('consolidado');
+    Route::resource('/consolidado', ConsolidadoController::class)->middleware('can:consolidado.index')->names('consolidado');
 
-    Route::get('/resumen', [ResumenController::class, 'index'])->name('resumen');
-    Route::get('/resumen-pdf/{selectedMonth}/{selectedYear}', [ResumenController::class, 'downloadPdf'])->name('resumen.pdf');
+    Route::get('/resumen', [ResumenController::class, 'index'])->middleware('can:resumen.index')->name('resumen');
+    Route::get('/resumen-pdf/{selectedMonth}/{selectedYear}', [ResumenController::class, 'downloadPdf'])->middleware('can:resumen.pdf')->name('resumen.pdf');
 
     Route::get('/ver-pdf/{certificado}', function ($certificado) {
         
@@ -50,7 +50,7 @@ Route::middleware([
 
     Route::resource('/users', UserController::class)->except('show', 'store', 'destroy')->middleware('can:users.index')->names('users');
 
-    Route::resource('/roles', RoleController::class)->except('show')->names('roles');
+    Route::resource('/roles', RoleController::class)->except('show')->middleware('can:roles.index')->names('roles');
 
-    Route::get('/cintillos', CintilloController::class)->middleware('can:cintillos')->name('cintillos');
+    Route::get('/cintillos', CintilloController::class)->middleware('can:cintillos.index')->name('cintillos');
 });

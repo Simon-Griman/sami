@@ -27,13 +27,17 @@
     <br><br>
     <div class="card">
         <div class="card-body">
+            @can('roles.create')
             <a href="{{ route('roles.create') }}" class="btn btn-success float-right mb-2" >Crear Rol</a>
+            @endcan
             <table class="table table-striped">
                 <thead class="bg-gray">
                     <tr>
                         <th>ID</th>
                         <th>Rol</th>
+                        @if (auth()->user()->can('roles.edit') || auth()->user()->can('roles.delete'))
                         <th colspan="2" class="text-center">Acciones</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -41,9 +45,12 @@
                     <tr>
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
+                        @can('roles.edit')
                         <td width="10px" style="padding: 0 5px; ">
                             <a href="{{ route('roles.edit', $role) }}" class="btn btn-sm btn-primary mt-2">Editar</a>
                         </td>
+                        @endcan
+                        @can('roles.delete')
                         <td width="10px" style="padding: 0 5px; ">
                             <form action="{{ route('roles.destroy', $role) }}" method="POST" class="m-0">
                                 @csrf
@@ -51,6 +58,7 @@
                                 <button type="submit" class="btn btn-sm btn-danger mt-2">Eliminar</button>
                             </form>
                         </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

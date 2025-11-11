@@ -37,11 +37,11 @@
 
     <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%">
     
-    
+    @can('consolidado.create')
     <div class="text-center">
         <a href="{{ route('consolidado.create') }}" class="btn btn-success mt-2">Nuevo Registro</a>
     </div>
-    
+    @endcan
 
     @livewire('consolidado.index')
     @livewireScripts

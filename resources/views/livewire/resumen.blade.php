@@ -1,6 +1,7 @@
 <div class="">
     <div class="row d-flex justify-content-center">
         <div class="card mt-2" style="max-height: 70vh;">
+            @can('resumen.fechas')
             <div class="card-head">
                 <select class="form-control" wire:model.live="selectedYear">
                     <option value="2024">2024</option>
@@ -26,6 +27,7 @@
                     <option value="12">Diciembre</option>
                 </select>
             </div>
+            @endcan
             <div class="card-body overflow-auto">
                 <table class="table table-responsive table-hover">
                     <thead>
@@ -54,11 +56,13 @@
                     </tbody>
                 </table>
             </div>
+            @can('resumen.pdf')
             <div class="card-footer">
                 <div class="text-center">
                     <a href="{{ route('resumen.pdf', ['selectedMonth' => $selectedMonth, 'selectedYear' => $selectedYear]) }}" class="btn btn-danger" target="_blank">Generar Pdf</a>
                 </div>
             </div>
+            @endcan
         </div>
     </div>
 </div>

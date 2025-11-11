@@ -38,7 +38,9 @@
                             <th><input wire:model="destino" type="text" class="form-control"><br>Destino</th>
                             <th><input wire:model="volumen" type="number" class="form-control"><br>Volumen</th>
                             <th><br>Certificado</th>
+                            @if (auth()->user()->can('consolidado.edit') || auth()->user()->can('consolidado.delete'))
                             <th colspan="2">Acciones</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -57,13 +59,17 @@
                                 <a href="{{ url('ver-pdf/' . basename($consolidado->certificado)) }}" target="_blank" class="btn btn-danger mx-2"><i class="fas fa-file-pdf"></i></a>
                             </td>
                             
+                            @can('consolidado.edit')
                             <td style="padding: 2px;">
                                 <a href="{{ route('consolidado.edit', $consolidado->id_consolidado) }}" class="btn btn-primary" title="editar"><i class="fas fa-pen"></i></a>
                             </td>
-                            
+                            @endcan
+
+                            @can('consolidado.delete')
                             <td style="padding: 2px;">
                                 <button class="btn btn-danger" wire:click="confirBorrar({{ $consolidado->id_consolidado }})" data-toggle="modal" data-target="#borrar" title="borrar"><i class="fas fa-trash"></i></button>
                             </td>
+                            @endcan
                         </tr>
                         @endforeach
                     </tbody>

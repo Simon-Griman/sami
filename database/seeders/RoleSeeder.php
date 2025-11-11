@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Livewire\Cintillo;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -39,5 +40,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'roles.create'])->syncRoles([$rolAdmin]);
         Permission::create(['name' => 'roles.edit'])->syncRoles([$rolAdmin]);
         Permission::create(['name' => 'roles.delete'])->syncRoles([$rolAdmin]);
+
+        Permission::create(['name' => 'cintillos.index'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'cintillos.create'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'cintillos.activar'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'cintillos.delete'])->syncRoles([$rolAdmin]);
     }
 }

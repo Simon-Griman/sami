@@ -314,27 +314,32 @@ return [
             'text'        => 'Consolidado',
             'url'         => 'consolidado',
             'icon'        => 'fas fa-check',
+            'can'         => 'consolidado.index',
         ],
         [
             'text'        => 'Resumen',
             'url'         => 'resumen',
             'icon'        => 'fas fa-list',
+            'can'         => 'resumen.index',
         ],
         ['header' => 'CONFIGURACIÓN'],
         [
             'text'        => 'Cintillos',
             'url'         => 'cintillos',
             'icon'        => 'fas fa-list',
+            'can'         => 'cintillos.index',
         ],
         [
             'text'        => 'Usuarios',
             'url'         => 'users',
             'icon'        => 'fas fa-users',
+            'can'         => 'users.index',
         ],
         [
             'text'        => 'Roles',
             'url'         => 'roles',
             'icon'        => 'fas fa-wrench',
+            'can'         => 'roles.index',
         ],
         [
             'text' => 'profile',
