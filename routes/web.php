@@ -5,6 +5,7 @@ use App\Http\Controllers\ConsolidadoController;
 use App\Http\Controllers\ResumenController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,18 @@ Route::middleware([
 ])->group(function () {
     
     Route::get('/home', function () {
-        return view('index');
+        if (Auth::User()->new_user == '0')
+        {
+            return view('index');
+        }
+        else if (Auth::User()->new_user == '1')
+        {
+            return view('actualizar_password');
+        }
+        else
+        {
+            return 'A ocurrido un error con el estatus del usuario';
+        }
     })->name('home');
 
     Route::resource('/consolidado', ConsolidadoController::class)->middleware('can:consolidado.index')->names('consolidado');

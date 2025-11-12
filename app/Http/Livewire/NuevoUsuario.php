@@ -26,9 +26,12 @@ class NuevoUsuario extends Component
 
         $user = User::find(Auth::User()->id);
 
-        $user->update(['password' => bcrypt($this->password)]);
+        $user->update([
+            'password' => bcrypt($this->password),
+            'new_user' => '0',
+        ]);
 
-        $user->roles()->sync([3]);
+        //$user->roles()->sync([3]);
 
         return redirect()->route('home');
     }
