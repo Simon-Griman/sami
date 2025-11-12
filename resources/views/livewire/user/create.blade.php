@@ -21,7 +21,28 @@
                             <input type="number" class="form-control @error('cedula') is-invalid @enderror" id="cedula" wire:model="cedula">
                             @error('cedula') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
-                
+
+                        <div class="form-group col-12">
+                            <label for="role">Lista de Roles</label>
+                            {{--<select name="role" id="" class="form-control @error('cedula') is-invalid @enderror" wire:model="role">
+                                <option value="">--Seleccionar--</option>
+                                @foreach ($roles as $id => $name)
+                                <option value="{{ $name }}">{{ $name }}</option>
+                                @endforeach
+                            </select>--}}
+
+                            @foreach ($roles as $role)
+                            @if ($role->name != 'Super-Admin')
+                            <div class="form-check">
+                                <input wire:model.livewire="selectedRoles" class="form-check-input" type="checkbox" id="{{ $role->id }}" value="{{ $role->name }}">
+                                <label for="{{ $role->id }}" class="form-check-label">{{ $role->name }}</label>
+                            </div>
+                            @endif
+                            @endforeach
+
+                            @error('role') <span class="text-red">{{ $message }}</span> @enderror
+                        </div>
+                        
                         <div class="text-center col-12">
                             <button class="btn btn-primary m-4" type="submit">Crear</button>
                             <a href="{{ route('users.index') }}" class="btn btn-danger">Cancelar</a>
