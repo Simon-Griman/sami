@@ -13,7 +13,10 @@ class Edit extends Component
     {
         $user = User::find($this->id_user);
 
-        $user->update(['password' => bcrypt($user->cedula)]);
+        $user->update([
+            'password' => bcrypt($user->cedula),
+            'new_user' => '1',
+        ]);
 
         return redirect()->route('users.edit', $user)->with('info', 'Contraseña Actualizada con Exito');
     }
