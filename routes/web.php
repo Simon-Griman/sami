@@ -47,7 +47,7 @@ Route::middleware([
     Route::resource('/consolidado', ConsolidadoController::class)->middleware('can:consolidado.index')->names('consolidado');
 
     Route::get('/resumen', [ResumenController::class, 'index'])->middleware('can:resumen.index')->name('resumen');
-    Route::get('/resumen-pdf/{selectedMonth}/{selectedYear}', [ResumenController::class, 'downloadPdf'])->middleware('can:resumen.pdf')->name('resumen.pdf');
+    Route::get('/resumen-pdf/{selectedMonth}/{selectedYear}/{tipo}', [ResumenController::class, 'downloadPdf'])->middleware('can:resumen.pdf')->name('resumen.pdf');
 
     Route::get('/ver-pdf/{certificado}', function ($certificado) {
         

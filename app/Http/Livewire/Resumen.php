@@ -9,22 +9,19 @@ use Livewire\Component;
 
 class Resumen extends Component
 {
-    public $selectedMonth, $selectedYear;
+    public $selectedMonth, $selectedMonth2, $selectedYear, $selectedYear2;
 
     public function mount()
     {
         $this->selectedYear = date('Y');
         $this->selectedMonth = date('m');
-    }
-
-    public function pdf()
-    {
-        return redirect()->route('resumen.pdf', ['selectedMonth' => $this->selectedMonth, 'selectedYear' => $this->selectedYear]);
+        $this->selectedYear2 = date('Y');
+        $this->selectedMonth2 = date('m');
     }
 
     public function render()
     {
-        $resumen = Consolidado::select('fecha', 'ubicacions.nombre as ubicacion', DB::raw('SUM(volumen) as total_cantidad'), DB::raw('COUNT(ubicacions.nombre) as certificados'))
+        $resumen_ubicacion = Consolidado::select('fecha', 'ubicacions.nombre as ubicacion', DB::raw('SUM(volumen) as total_cantidad'), DB::raw('COUNT(ubicacions.nombre) as certificados'))
             ->join('ubicacions', 'ubicacions.id', '=', 'ubicacion_id')
             ->groupBy('ubicacions.nombre')
             ->whereYear('fecha', $this->selectedYear)
@@ -32,8 +29,16 @@ class Resumen extends Component
             ->get()
         ;
 
+        $resumen_producto = Consolidado::select('fecha', 'productos.nombre as productos', DB::raw('SUM(volumen) as total_cantidad'), DB::raw('COUNT(productos.nombre) as certificados'))
+            ->join('productos', 'productos.id', '=', 'producto_id')
+            ->groupBy('productos.nombre')
+            ->whereYear('fecha', $this->selectedYear2)
+            ->whereMonth('fecha', $this->selectedMonth2)
+            ->get()
+        ;
+
         $fecha = new Carbon();
 
-        return view('livewire.resumen', compact('resumen', 'fecha'));
+        return view('livewire.resumen', compact('resumen_ubicacion', 'resumen_producto', 'fecha'));
     }
 }

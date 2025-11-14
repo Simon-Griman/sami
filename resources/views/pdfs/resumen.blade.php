@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Resumen: {{ $selectedMonth }}-{{ $selectedYear }}</title>
+    <title>Resumen {{ $tipo }}: @if ($tipo == 'ubicacion') {{ $mes_ubicacion }}-{{ $ano_ubicacion }} @else {{ $mes_producto }}-{{ $ano_producto }} @endif</title>
     <style>
         <?php include(public_path().'/css/estilos.css');?>
     </style>
@@ -12,7 +12,7 @@
 <body>
     <img src="{{ url('storage/' . $cintillo) }}" alt="" class="cintillo" style="width:100%">
     <div class="row d-flex justify-content-center">
-        <h1>Resumen Consolidado {{ $selectedMonth }}/{{ $selectedYear }}</h1>
+        <h1>Resumen Consolidado {{ $mes_ubicacion }}/{{ $ano_ubicacion }}</h1>
         <div class="card mt-2" style="max-height: 70vh;">
             <div class="card-body overflow-auto">
                 <table class="table table-responsive table-hover tabla">
@@ -28,7 +28,11 @@
                     <tbody>
                         @foreach ($resumen as $item)
                         <tr>
+                            @if ($tipo == 'ubicacion')
                             <td>{{ $item->ubicacion }}</td>
+                            @else
+                            <td>{{ $item->producto }}</td>
+                            @endif
                             <td>{{ $item->total_cantidad }}</td>
                             <td>{{ $item->certificados }}</td>
                             @php
