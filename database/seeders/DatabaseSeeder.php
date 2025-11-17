@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InstalacionSeeder::class);
         $this->call(ProductoSeeder::class);
         $this->call(UbicacionSeeder::class);
+        $this->call(SegregacionSeeder::class);
         $this->call(ConsolidadoSeeder::class);
     }
 }

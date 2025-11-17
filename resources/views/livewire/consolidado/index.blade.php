@@ -34,9 +34,17 @@
                                         <option value="{{ $producto->nombre }}">{{ $producto->nombre }}</option>
                                     @endforeach
                                 </select>
-                                <br>Producto
+                                <br>Hidrocarburo
                             </th>
-                            <th><input wire:model="segregacion" type="text" class="form-control"><br>Segregación</th>
+                            <th>
+                                <select class="form-control" wire:model="segregacion">
+                                    <option value="">Todo</option>                            
+                                    @foreach ($segregaciones as $segregacion)
+                                        <option value="{{ $segregacion->nombre }}">{{ $segregacion->nombre }}</option>
+                                    @endforeach
+                                </select>
+                                <br>Segregación
+                            </th>
                             <th><input wire:model="destino" type="text" class="form-control"><br>Destino</th>
                             <th><input wire:model="volumen" type="number" class="form-control"><br>Volumen</th>
                             <th><br>Certificado</th>

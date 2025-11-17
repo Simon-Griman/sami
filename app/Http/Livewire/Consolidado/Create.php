@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Consolidado;
 use App\Models\Consolidado;
 use App\Models\Instalacion;
 use App\Models\Producto;
+use App\Models\Segregacion;
 use App\Models\Ubicacion;
 
 use Livewire\Component;
@@ -14,7 +15,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $productos, $segregaciones;
 
     protected $rules = [
         'fecha' => 'required',
@@ -27,6 +28,30 @@ class Create extends Component
         'volumen' => 'required|integer',
         'certificado' => 'required|file|mimes:pdf|max:2048',
     ];
+
+    public function mount()
+    {
+        $this->productos = Producto::orderBy('nombre')->get();
+
+        $this->segregaciones = collect();
+    }
+
+    public function updatedProducto($value)
+    {
+        $hidrocarburo = '';
+
+        if ($value == 1)
+        {
+            $hidrocarburo = 'Producto';
+        }
+        else if ($value == 2)
+        {
+            $hidrocarburo = 'Crudo';
+        }
+
+        $this->segregaciones = Segregacion::where('hidrocarburo', $hidrocarburo)->orderBy('nombre')->get();
+        $this->segregacion = $this->segregaciones->first()->id ?? null;
+    }
 
     public function updated($propertyName)
     {
@@ -45,7 +70,7 @@ class Create extends Component
             'ubicacion_id' => $this->ubicacion,
             'cliente' => $this->cliente,
             'producto_id' => $this->producto,
-            'segregacion' => $this->segregacion,
+            'segregacion_id' => $this->segregacion,
             'destino' => $this->destino,
             'volumen' => $this->volumen,
             'certificado' => $nombre
@@ -60,8 +85,7 @@ class Create extends Component
     {
         $instalacions = Instalacion::orderBy('nombre')->get();
         $ubicacions = Ubicacion::orderBy('nombre')->get();
-        $productos = Producto::orderBy('nombre')->get();
 
-        return view('livewire.consolidado.create', compact('instalacions', 'ubicacions', 'productos'));
+        return view('livewire.consolidado.create', compact('instalacions', 'ubicacions'));
     }
 }

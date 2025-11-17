@@ -20,7 +20,7 @@ class CreateConsolidadosTable extends Migration
             $table->unsignedBigInteger('ubicacion_id');
             $table->string('cliente', 45);
             $table->unsignedBigInteger('producto_id');
-            $table->string('segregacion', 45);
+            $table->unsignedBigInteger('segregacion_id');
             $table->string('destino', 45);
             $table->integer('volumen');
             $table->string('certificado');
@@ -28,6 +28,7 @@ class CreateConsolidadosTable extends Migration
             $table->foreign('instalacion_id')->references('id')->on('instalacions')->onDelete('cascade');
             $table->foreign('ubicacion_id')->references('id')->on('ubicacions')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('segregacion_id')->references('id')->on('segregacions')->onDelete('cascade');
             $table->timestamps();
         });
     }

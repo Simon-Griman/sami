@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Instalacion;
 use App\Models\Producto;
+use App\Models\Segregacion;
 use App\Models\Ubicacion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,14 +20,15 @@ class ConsolidadoFactory extends Factory
         $instalacion_id = Instalacion::pluck('id');
         $ubicacion_id = Ubicacion::pluck('id');
         $producto_id = Producto::pluck('id');
+        $segregacion_id = Segregacion::pluck('id');
 
         return [
-            'fecha' => $this->faker->dateTimeBetween('2020-01-01', '2025-12-31')->format('Y-m-d'),
+            'fecha' => $this->faker->dateTimeBetween('2025-01-01', '2025-12-31')->format('Y-m-d'),
             'instalacion_id' => $this->faker->randomElement($instalacion_id),
             'ubicacion_id' => $this->faker->randomElement($ubicacion_id),
             'cliente' => substr($this->faker->name(), 0, 45),
             'producto_id' => $this->faker->randomElement($producto_id),
-            'segregacion' => substr($this->faker->word(), 0, 45),
+            'segregacion_id' => $this->faker->randomElement($segregacion_id),
             'destino' => substr($this->faker->city(), 0, 45),
             'volumen' => $this->faker->numberBetween(300, 1500),
             'certificado' => 'certificados/IfOVFFI9pJ5RCQvpUpdTZgt7oOxg2C7LRhe2N1np.pdf',

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Consolidado;
 use App\Models\Consolidado;
 use App\Models\Instalacion;
 use App\Models\Producto;
+use App\Models\Segregacion;
 use App\Models\Ubicacion;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -88,16 +89,17 @@ class Index extends Component
 
     public function render()
     {
-        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacion', 'destino', 'volumen', 'certificado')
+        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacions.nombre as segregacion', 'destino', 'volumen', 'certificado')
             ->join('instalacions', 'instalacions.id', '=', 'instalacion_id')
             ->join('ubicacions', 'ubicacions.id', '=', 'ubicacion_id')
             ->join('productos', 'productos.id', '=', 'producto_id')
+            ->join('segregacions', 'segregacions.id', '=', 'segregacion_id')
             ->whereBetween('fecha', [$this->fecha_inicio, $this->fecha_final])
             ->where('instalacions.nombre', 'LIKE', '%' . $this->instalacion . '%')
             ->where('ubicacions.nombre', 'LIKE', '%' . $this->ubicacion . '%')
             ->where('cliente', 'LIKE', '%' . $this->cliente . '%')
             ->where('productos.nombre', 'LIKE', '%' . $this->producto . '%')
-            ->where('segregacion', 'LIKE', '%' . $this->segregacion . '%')
+            ->where('segregacions.nombre', 'LIKE', '%' . $this->segregacion . '%')
             ->where('destino', 'LIKE', '%' . $this->destino . '%')
             ->where('volumen', 'LIKE', '%' . $this->volumen . '%')
             ->where('borrado', '0')
@@ -107,9 +109,10 @@ class Index extends Component
         $instalaciones = Instalacion::orderBy('nombre')->get();
         $ubicaciones = Ubicacion::orderBy('nombre')->get();
         $productos = Producto::orderBy('nombre')->get();
+        $segregaciones = Segregacion::orderBy('nombre')->get();
 
         $certificado = Storage::files('public/certificados');
 
-        return view('livewire.consolidado.index', compact('consolidados','instalaciones', 'ubicaciones', 'productos', 'certificado'));
+        return view('livewire.consolidado.index', compact('consolidados','instalaciones', 'ubicaciones', 'productos', 'segregaciones', 'certificado'));
     }
 }

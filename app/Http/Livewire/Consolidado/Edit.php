@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Consolidado;
 use App\Models\Consolidado;
 use App\Models\Instalacion;
 use App\Models\Producto;
+use App\Models\Segregacion;
 use App\Models\Ubicacion;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -16,7 +17,7 @@ class Edit extends Component
 
     public $consolidado;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente, $productos, $segregaciones;
 
     public function mount()
     {
@@ -25,10 +26,42 @@ class Edit extends Component
         $this->ubicacion = $this->consolidado->ubicacion_id;
         $this->cliente = $this->consolidado->cliente;
         $this->producto = $this->consolidado->producto_id;
-        $this->segregacion = $this->consolidado->segregacion;
+        $this->segregacion = $this->consolidado->segregacion_id;
         $this->destino = $this->consolidado->destino;
         $this->volumen = $this->consolidado->volumen;
         $this->certificado_existente = $this->consolidado->certificado;
+
+        $this->productos = Producto::orderBy('nombre')->get();
+
+        $hidrocarburo = '';
+
+        if ($this->producto == 1)
+        {
+            $hidrocarburo = 'Producto';
+        }
+        else if ($this->producto == 2)
+        {
+            $hidrocarburo = 'Crudo';
+        }
+
+        $this->segregaciones = Segregacion::where('hidrocarburo', $hidrocarburo)->orderBy('nombre')->get();;
+    }
+
+    public function updatedProducto($value)
+    {
+        $hidrocarburo = '';
+
+        if ($value == 1)
+        {
+            $hidrocarburo = 'Producto';
+        }
+        else if ($value == 2)
+        {
+            $hidrocarburo = 'Crudo';
+        }
+
+        $this->segregaciones = Segregacion::where('hidrocarburo', $hidrocarburo)->orderBy('nombre')->get();
+        $this->segregacion = $this->segregaciones->first()->id ?? null;
     }
 
     protected $rules = [
@@ -72,7 +105,7 @@ class Edit extends Component
             'ubicacion_id' => $this->ubicacion,
             'cliente' => $this->cliente,
             'producto_id' => $this->producto,
-            'segregacion' => $this->segregacion,
+            'segregacion_id' => $this->segregacion,
             'destino' => $this->destino,
             'volumen' => $this->volumen,
             'certificado' => $nombre
@@ -87,9 +120,8 @@ class Edit extends Component
     public function render()
     {
         $instalacions = Instalacion::orderBy('nombre')->get();
-        $ubicacions = Ubicacion::orderBy('nombre')->get();
-        $productos = Producto::orderBy('nombre')->get();    
+        $ubicacions = Ubicacion::orderBy('nombre')->get();  
 
-        return view('livewire.consolidado.edit', compact('instalacions', 'ubicacions', 'productos'));
+        return view('livewire.consolidado.edit', compact('instalacions', 'ubicacions'));
     }
 }

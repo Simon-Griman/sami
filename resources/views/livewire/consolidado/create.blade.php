@@ -35,7 +35,7 @@
                             @error('cliente') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group col-12">
-                            <label for="producto">Producto</label>
+                            <label for="producto">Hidrocarburo</label>
                             <select name="" id="producto" class="form-control @error('producto') is-invalid @enderror" wire:model="producto">
                                 <option value="">-- Seleccionar --</option>                                
                                 @foreach ($productos as $producto)
@@ -46,7 +46,12 @@
                         </div>
                         <div class="form-group col-12">
                             <label for="segregacion">Segregación</label>
-                            <input type="text" class="form-control @error('segregacion') is-invalid @enderror" id="segregacion" wire:model="segregacion">
+                            <select name="" id="segregacion" class="form-control @error('segregacion') is-invalid @enderror" wire:model="segregacion">
+                                <option value="">-- Seleccionar --</option>                                
+                                @foreach ($segregaciones as $segregacion)
+                                <option value="{{ $segregacion->id }}">{{ $segregacion->nombre }}</option>
+                                @endforeach
+                            </select>
                             @error('segregacion') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group col-12">
