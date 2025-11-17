@@ -18,6 +18,7 @@ class Consolidado extends Model
         'segregacion_id',
         'destino',
         'volumen',
+        'operacion',
         'certificado',
         'borrado',
         

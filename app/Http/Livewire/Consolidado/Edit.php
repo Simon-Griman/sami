@@ -17,7 +17,7 @@ class Edit extends Component
 
     public $consolidado;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente, $productos, $segregaciones;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente, $operacion, $productos, $segregaciones;
 
     public function mount()
     {
@@ -29,6 +29,7 @@ class Edit extends Component
         $this->segregacion = $this->consolidado->segregacion_id;
         $this->destino = $this->consolidado->destino;
         $this->volumen = $this->consolidado->volumen;
+        $this->operacion = $this->consolidado->operacion;
         $this->certificado_existente = $this->consolidado->certificado;
 
         $this->productos = Producto::orderBy('nombre')->get();
@@ -73,6 +74,7 @@ class Edit extends Component
         'segregacion' => 'required',
         'destino' => 'required',
         'volumen' => 'required',
+        'operacion' => 'required',
         'certificado' => 'nullable|file|mimes:pdf|max:2048',
     ];
 
@@ -108,6 +110,7 @@ class Edit extends Component
             'segregacion_id' => $this->segregacion,
             'destino' => $this->destino,
             'volumen' => $this->volumen,
+            'operacion' => $this->operacion,
             'certificado' => $nombre
         ]);
 

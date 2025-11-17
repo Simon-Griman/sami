@@ -31,6 +31,7 @@ class ConsolidadoFactory extends Factory
             'segregacion_id' => $this->faker->randomElement($segregacion_id),
             'destino' => substr($this->faker->city(), 0, 45),
             'volumen' => $this->faker->numberBetween(300, 1500),
+            'operacion' => $this->faker->randomElement(['Recibo', 'Venta', 'Despacho']),
             'certificado' => 'certificados/IfOVFFI9pJ5RCQvpUpdTZgt7oOxg2C7LRhe2N1np.pdf',
             'borrado' => '0',
         ];

@@ -15,7 +15,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $fecha_inicio, $fecha_final, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $borrar, $c_borrar;
+    public $fecha_inicio, $fecha_final, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $operacion, $borrar, $c_borrar;
 
     protected $paginationTheme = "bootstrap";
 
@@ -89,7 +89,7 @@ class Index extends Component
 
     public function render()
     {
-        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacions.nombre as segregacion', 'destino', 'volumen', 'certificado')
+        $consolidados = Consolidado::select('consolidados.id as id_consolidado', 'fecha', 'instalacions.id', 'instalacions.nombre as instalacion', 'ubicacions.id', 'ubicacions.nombre as ubicacion', 'cliente', 'productos.id', 'productos.nombre as producto', 'segregacions.nombre as segregacion', 'destino', 'volumen', 'operacion', 'certificado')
             ->join('instalacions', 'instalacions.id', '=', 'instalacion_id')
             ->join('ubicacions', 'ubicacions.id', '=', 'ubicacion_id')
             ->join('productos', 'productos.id', '=', 'producto_id')

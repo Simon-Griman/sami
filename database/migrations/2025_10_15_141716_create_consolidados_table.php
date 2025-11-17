@@ -23,6 +23,7 @@ class CreateConsolidadosTable extends Migration
             $table->unsignedBigInteger('segregacion_id');
             $table->string('destino', 45);
             $table->integer('volumen');
+            $table->string('operacion', 45);
             $table->string('certificado');
             $table->enum('borrado', [0, 1])->default('0');
             $table->foreign('instalacion_id')->references('id')->on('instalacions')->onDelete('cascade');

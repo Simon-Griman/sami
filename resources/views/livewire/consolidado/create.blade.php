@@ -65,6 +65,16 @@
                             @error('volumen') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group col-12">
+                            <label for="operacion">Operación</label>
+                            <select name="" id="operacion" class="form-control @error('operacion') is-invalid @enderror" wire:model="operacion">
+                                <option value="">-- Seleccionar --</option>                                
+                                <option value="Recibo">Recibo</option>
+                                <option value="Venta">Venta</option>
+                                <option value="Despacho">Despacho</option>
+                            </select>
+                            @error('operacion') <span class="text-red">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group col-12">
                             <label for="certificado">Cargar Certificado</label><br>
                             <input type="file" wire:model="certificado" id="certificado"><br>
                             @error('certificado') <span class="error text-red">{{ $message }}</span> @enderror

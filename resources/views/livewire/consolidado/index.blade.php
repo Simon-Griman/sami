@@ -47,6 +47,15 @@
                             </th>
                             <th><input wire:model="destino" type="text" class="form-control"><br>Destino</th>
                             <th><input wire:model="volumen" type="number" class="form-control"><br>Volumen</th>
+                            <th>
+                                <select class="form-control" wire:model="operacion">
+                                    <option value="">Todo</option>                            
+                                    <option value="Recibo">Recibo</option>
+                                    <option value="Venta">Venta</option>
+                                    <option value="Despacho">Despacho</option>
+                                </select>
+                                <br>Operación
+                            </th>
                             <th><br>Certificado</th>
                             @if (auth()->user()->can('consolidado.edit') || auth()->user()->can('consolidado.delete'))
                             <th colspan="2">Acciones</th>
@@ -64,6 +73,7 @@
                             <td>{{ $consolidado->segregacion }}</td>
                             <td>{{ $consolidado->destino }}</td>
                             <td>{{ $consolidado->volumen }}</td>
+                            <td>{{ $consolidado->operacion }}</td>
 
                             <td style="padding: 2px;">
                                 <a href="{{ url('ver-pdf/' . basename($consolidado->certificado)) }}" target="_blank" class="btn btn-danger mx-2"><i class="fas fa-file-pdf"></i></a>

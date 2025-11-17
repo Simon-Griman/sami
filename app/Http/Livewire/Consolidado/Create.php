@@ -15,7 +15,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $productos, $segregaciones;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $operacion, $productos, $segregaciones;
 
     protected $rules = [
         'fecha' => 'required',
@@ -26,6 +26,7 @@ class Create extends Component
         'segregacion' => 'required',
         'destino' => 'required',
         'volumen' => 'required|integer',
+        'operacion' => 'required',
         'certificado' => 'required|file|mimes:pdf|max:2048',
     ];
 
@@ -73,6 +74,7 @@ class Create extends Component
             'segregacion_id' => $this->segregacion,
             'destino' => $this->destino,
             'volumen' => $this->volumen,
+            'operacion' => $this->operacion,
             'certificado' => $nombre
         ]);
 
