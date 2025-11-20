@@ -97,7 +97,7 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <tr>
-                            <th>Producto</th>
+                            <th>Hidrocarburo</th>
                             <th>Barriles</th>
                             <th>Certificados</th>
                             <th>MBD</th>

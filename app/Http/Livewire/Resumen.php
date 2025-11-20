@@ -29,9 +29,9 @@ class Resumen extends Component
             ->get()
         ;
 
-        $resumen_producto = Consolidado::select('fecha', 'productos.nombre as productos', DB::raw('SUM(volumen) as total_cantidad'), DB::raw('COUNT(productos.nombre) as certificados'))
-            ->join('productos', 'productos.id', '=', 'producto_id')
-            ->groupBy('productos.nombre')
+        $resumen_producto = Consolidado::select('fecha', 'segregacions.nombre as productos', DB::raw('SUM(volumen) as total_cantidad'), DB::raw('COUNT(segregacions.nombre) as certificados'))
+            ->join('segregacions', 'segregacions.id', '=', 'segregacion_id')
+            ->groupBy('segregacions.nombre')
             ->whereYear('fecha', $this->selectedYear2)
             ->whereMonth('fecha', $this->selectedMonth2)
             ->get()
