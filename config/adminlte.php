@@ -324,6 +324,18 @@ return [
         ],
         ['header' => 'CONFIGURACIÓN'],
         [
+            'text'        => 'Ubicaciones',
+            'url'         => 'ubicaciones',
+            'icon'        => 'fas fa-flag',
+            'can'         => 'resumen.index',
+        ],
+        [
+            'text'        => 'Segregación',
+            'url'         => 'segregacion',
+            'icon'        => 'fas fa-ban',
+            'can'         => 'resumen.index',
+        ],
+        [
             'text'        => 'Cintillos',
             'url'         => 'cintillos',
             'icon'        => 'fas fa-list',
