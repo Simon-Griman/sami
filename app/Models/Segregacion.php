@@ -11,5 +11,6 @@ class Segregacion extends Model
 
     protected $fillable = [
         'nombre',
+        'hidrocarburo',
     ];
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\CintilloController;
 use App\Http\Controllers\ConsolidadoController;
 use App\Http\Controllers\ResumenController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SegregacionController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -62,6 +63,8 @@ Route::middleware([
     });
 
     Route::get('/ubicaciones', UbicacionController::class)->middleware('can:ubicaciones.index')->name('ubicaciones');
+
+    Route::get('/segregacion', SegregacionController::class)->middleware('can:segregacion.index')->name('segregacion');
 
     Route::resource('/users', UserController::class)->except('show', 'store', 'destroy')->middleware('can:users.index')->names('users');
 
