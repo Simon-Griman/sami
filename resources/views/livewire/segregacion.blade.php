@@ -2,7 +2,9 @@
     <div class="row d-flex justify-content-center">
         <div class="card mt-2" style="max-height: 75vh;">
             <div class="card-head text-center p-2">
+                @can('segregacion.create')
                 <a wire:click="modalCrear()" class="btn btn-primary" data-toggle="modal" data-target="#crear">Nueva Segregación</a>
+                @endcan
                 <input wire:model="segregacion_nombre" type="text" class="form-control mt-2" placeholder="Buscar:">
             </div>
             <div class="card-body overflow-auto">
@@ -18,9 +20,11 @@
                         <tr>
                             <td>{{ $segregacion->nombre }}</td>
                             <td>
+                                @can('segregacion.edit')
                                 <a wire:click="modalEditar({{ $segregacion->id }})" class="btn btn-success" data-toggle="modal" data-target="#crear">Editar</a>
+                                @endcan
 
-                                @can('Super-User')
+                                @can('segregacion.delete')
                                 <a wire:click="confirBorrar({{ $segregacion->id }})" class="btn btn-danger" data-toggle="modal" data-target="#borrar">Borrar</a>
                                 @endcan
                             </td>

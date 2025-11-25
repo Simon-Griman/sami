@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Consolidado;
 use App\Models\Ubicacion as Ubicaciones;
 use Livewire\Component;
 
 class Ubicacion extends Component
 {
-    public $crear = true, $borrar, $ubicacion_id, $ubicacion_borrar, $nombre, $nombre_ubicacion;
+    public $crear = true, $borrar, $ubicacion_id, $ubicacion_borrar, $nombre, $nombre_ubicacion, $registros_vinculados = false;
 
     protected $rules = [
         'nombre' => 'required|unique:ubicacions,nombre',
@@ -59,19 +60,39 @@ class Ubicacion extends Component
     {
         $this->ubicacion_id = '';
         $this->nombre = '';
+        $this->registros_vinculados = false;
     }
 
     public function confirBorrar($id)
     {
         $this->borrar = $id;
         $this->ubicacion_borrar = Ubicaciones::find($id)->nombre;
+
+        if (Consolidado::where('ubicacion_id', $id)->exists())
+        {
+            $this->registros_vinculados = true;
+        }
+    }
+
+    public function dobleConfirBorrar()
+    {
+        $this->dispatchBrowserEvent('borrar2');
     }
 
     public function borrar()
     {
         Ubicaciones::find($this->borrar)->delete();
 
-        $this->dispatchBrowserEvent('borrar');
+        if ($this->registros_vinculados)
+        {
+            $this->dispatchBrowserEvent('borrar3');
+        }
+        else
+        {
+            $this->dispatchBrowserEvent('borrar');
+        }
+
+        $this->limpiarCampos();
     }
 
     public function render()

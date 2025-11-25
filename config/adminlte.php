@@ -327,13 +327,13 @@ return [
             'text'        => 'Ubicaciones',
             'url'         => 'ubicaciones',
             'icon'        => 'fas fa-flag',
-            'can'         => 'resumen.index',
+            'can'         => 'ubicaciones.index',
         ],
         [
             'text'        => 'Segregación',
             'url'         => 'segregacion',
             'icon'        => 'fas fa-ban',
-            'can'         => 'resumen.index',
+            'can'         => 'segregacion.index',
         ],
         [
             'text'        => 'Cintillos',

@@ -45,5 +45,15 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'cintillos.create'])->syncRoles([$rolAdmin]);
         Permission::create(['name' => 'cintillos.activar'])->syncRoles([$rolAdmin]);
         Permission::create(['name' => 'cintillos.delete'])->syncRoles([$rolAdmin]);
+
+        Permission::create(['name' => 'ubicaciones.index'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'ubicaciones.create'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'ubicaciones.edit'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'ubicaciones.delete'])->syncRoles([$rolAdmin]);
+
+        Permission::create(['name' => 'segregacion.index'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'segregacion.create'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'segregacion.edit'])->syncRoles([$rolAdmin]);
+        Permission::create(['name' => 'segregacion.delete'])->syncRoles([$rolAdmin]);
     }
 }
