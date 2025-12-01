@@ -49,10 +49,25 @@
                                 $ano = $fecha->parse($ubicacion->fecha)->format('Y');
                                 $mes = $fecha->parse($ubicacion->fecha)->format('m');
                             @endphp
-                            <td>{{ round($ubicacion->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
-                            <td>{{ round($ubicacion->total_cantidad / 1000000, 2) }} </td>
+                            <td>{{ $mbd = round($ubicacion->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
+                            <td>{{ $mmbls = round($ubicacion->total_cantidad / 1000000, 2) }} </td>
                         </tr>
+
+                        @php
+                            $total_barriles += $ubicacion->total_cantidad;
+                            $total_certificados += $ubicacion->certificados;
+                            $total_mbd += $mbd;
+                            $total_mmbls += $mmbls;
+                        @endphp
+
                         @endforeach
+                        <tr>
+                            <td class="font-weight-bold">Total:</td>
+                            <td class="font-weight-bold">{{ $total_barriles }}</td>
+                            <td class="font-weight-bold">{{ $total_certificados }}</td>
+                            <td class="font-weight-bold">{{ $total_mbd }}</td>
+                            <td class="font-weight-bold">{{ $total_mmbls }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -114,10 +129,23 @@
                                 $ano = $fecha->parse($producto->fecha)->format('Y');
                                 $mes = $fecha->parse($producto->fecha)->format('m');
                             @endphp
-                            <td>{{ round($producto->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
-                            <td>{{ round($producto->total_cantidad / 1000000, 2) }} </td>
+                            <td>{{ $mbd2 = round($producto->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
+                            <td>{{ $mmbls2 = round($producto->total_cantidad / 1000000, 2) }}</td>
                         </tr>
+                        @php
+                            $total_barriles2 += $producto->total_cantidad;
+                            $total_certificados2 += $producto->certificados;
+                            $total_mbd2 += $mbd2;
+                            $total_mmbls2 += $mmbls2;
+                        @endphp
                         @endforeach
+                        <tr>
+                            <td class="font-weight-bold">Total:</td>
+                            <td class="font-weight-bold">{{ $total_barriles2 }}</td>
+                            <td class="font-weight-bold">{{ $total_certificados2 }}</td>
+                            <td class="font-weight-bold">{{ $total_mbd2 }}</td>
+                            <td class="font-weight-bold">{{ $total_mmbls2 }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

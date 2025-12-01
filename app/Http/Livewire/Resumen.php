@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Resumen extends Component
 {
-    public $selectedMonth, $selectedMonth2, $selectedYear, $selectedYear2;
+    public $selectedMonth, $selectedMonth2, $selectedYear, $selectedYear2, $mbd, $mbd2, $mmbls, $mmbls2, $total_barriles, $total_barriles2, $total_certificados, $total_certificados2, $total_mbd, $total_mbd2, $total_mmbls, $total_mmbls2;
 
     public function mount()
     {

@@ -102,6 +102,7 @@ class Index extends Component
             ->where('segregacions.nombre', 'LIKE', '%' . $this->segregacion . '%')
             ->where('destino', 'LIKE', '%' . $this->destino . '%')
             ->where('volumen', 'LIKE', '%' . $this->volumen . '%')
+            ->where('operacion','LIKE', '%' . $this->operacion . '%')
             ->where('borrado', '0')
             ->paginate()
         ;
