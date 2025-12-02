@@ -26,6 +26,12 @@
                     <option value="11">Noviembre</option>
                     <option value="12">Diciembre</option>
                 </select>
+                <select class="form-control" wire:model.live="selectedOperacion">
+                    <option value="">-- Seleccionar --</option>
+                    <option value="Recibo">Recibo</option>
+                    <option value="Venta">Venta</option>
+                    <option value="Despacho">Despacho</option>
+                </select>
             </div>
             @endcan
             <div class="card-body overflow-auto">
@@ -74,7 +80,7 @@
             @can('resumen.pdf')
             <div class="card-footer">
                 <div class="text-center">
-                    <a href="{{ route('resumen.pdf', ['selectedMonth' => $selectedMonth, 'selectedYear' => $selectedYear, 'tipo' => 'ubicacion']) }}" class="btn btn-danger" target="_blank">Generar Pdf</a>
+                    <a href="{{ route('resumen.pdf', ['selectedMonth' => $selectedMonth, 'selectedYear' => $selectedYear, 'tipo' => 'ubicacion', 'operacion' => $selectedOperacion]) }}" class="btn btn-danger" target="_blank">Generar Pdf</a>
                 </div>
             </div>
             @endcan
@@ -105,6 +111,12 @@
                     <option value="10">Octubre</option>
                     <option value="11">Noviembre</option>
                     <option value="12">Diciembre</option>
+                </select>
+                <select class="form-control" wire:model.live="selectedOperacion2">
+                    <option value="">-- Seleccionar --</option>
+                    <option value="Recibo">Recibo</option>
+                    <option value="Venta">Venta</option>
+                    <option value="Despacho">Despacho</option>
                 </select>
             </div>
             @endcan
@@ -152,7 +164,7 @@
             @can('resumen.pdf')
             <div class="card-footer">
                 <div class="text-center">
-                    <a href="{{ route('resumen.pdf', ['selectedMonth' => $selectedMonth, 'selectedYear' => $selectedYear, 'tipo' => 'producto']) }}" class="btn btn-danger" target="_blank">Generar Pdf</a>
+                    <a href="{{ route('resumen.pdf', ['selectedMonth' => $selectedMonth2, 'selectedYear' => $selectedYear2, 'tipo' => 'producto', 'operacion' => $selectedOperacion2]) }}" class="btn btn-danger" target="_blank">Generar Pdf</a>
                 </div>
             </div>
             @endcan

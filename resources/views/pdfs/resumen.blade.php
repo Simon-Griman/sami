@@ -18,7 +18,11 @@
                 <table class="table table-responsive table-hover tabla">
                     <thead>
                         <tr>
+                            @if ($tipo == 'ubicacion')
                             <th>Ubicación</th>
+                            @else
+                            <th>Hidrocarburo</th>
+                            @endif
                             <th>Barriles</th>
                             <th>Certificados</th>
                             <th>MBD</th>
@@ -39,10 +43,23 @@
                                 $ano = $fecha->parse($item->fecha)->format('Y');
                                 $mes = $fecha->parse($item->fecha)->format('m');
                             @endphp
-                            <td>{{ round($item->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
-                            <td>{{ round($item->total_cantidad / 1000000, 2) }} </td>
+                            <td>{{ $mbd = round($item->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
+                            <td>{{ $mmbls = round($item->total_cantidad / 1000000, 2) }} </td>
                         </tr>
+                        @php
+                            $total_barriles += $item->total_cantidad;
+                            $total_certificados += $item->certificados;
+                            $total_mbd += $mbd;
+                            $total_mmbls += $mmbls;
+                        @endphp
                         @endforeach
+                        <tr>
+                            <td class="font-weight-bold">Total:</td>
+                            <td class="font-weight-bold">{{ $total_barriles }}</td>
+                            <td class="font-weight-bold">{{ $total_certificados }}</td>
+                            <td class="font-weight-bold">{{ $total_mbd }}</td>
+                            <td class="font-weight-bold">{{ $total_mmbls }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
