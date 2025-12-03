@@ -66,14 +66,14 @@ class Edit extends Component
     }
 
     protected $rules = [
-        'fecha' => 'required',
+        'fecha' => 'required|date|after_or_equal:2007-01-01|before_or_equal:today',
         'instalacion' => 'required',
         'ubicacion' => 'required',
-        'cliente' => 'required',
+        'cliente' => 'required|max:45',
         'producto' => 'required',
         'segregacion' => 'required',
-        'destino' => 'required',
-        'volumen' => 'required',
+        'destino' => 'required|max:45',
+        'volumen' => 'required|integer',
         'operacion' => 'required',
         'certificado' => 'nullable|file|mimes:pdf|max:2048',
     ];

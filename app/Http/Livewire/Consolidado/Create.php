@@ -18,13 +18,13 @@ class Create extends Component
     public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $operacion, $productos, $segregaciones;
 
     protected $rules = [
-        'fecha' => 'required',
+        'fecha' => 'required|date|after_or_equal:2007-01-01|before_or_equal:today',
         'instalacion' => 'required',
         'ubicacion' => 'required',
-        'cliente' => 'required',
+        'cliente' => 'required|max:45',
         'producto' => 'required',
         'segregacion' => 'required',
-        'destino' => 'required',
+        'destino' => 'required|max:45',
         'volumen' => 'required|integer',
         'operacion' => 'required',
         'certificado' => 'required|file|mimes:pdf|max:2048',

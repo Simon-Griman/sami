@@ -14,7 +14,7 @@ class Segregacion extends Component
     protected function rules()
     {
         return [
-            'nombre' => ['required', Rule::unique('segregacions', 'nombre')->ignore($this->segregacion_id)],
+            'nombre' => ['required', Rule::unique('segregacions', 'nombre')->ignore($this->segregacion_id), 'max:45'],
             'hidrocarburo' => 'required',
         ];
     }

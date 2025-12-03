@@ -13,8 +13,8 @@ class Create extends Component
     public $selectedRoles = [];
 
     protected $rules = [
-        'name' => 'required',
-        'email' => 'required|unique:users,email',
+        'name' => 'required|max:45',
+        'email' => 'required|email|unique:users,email',
         'cedula' => 'required|integer|min:1000000|max:50000000|unique:users,cedula',
         'selectedRoles.*' => 'required|array',
         'selectedRoles.*' => 'string|exists:roles,name',

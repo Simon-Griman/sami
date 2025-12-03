@@ -11,7 +11,7 @@ class Ubicacion extends Component
     public $crear = true, $borrar, $ubicacion_id, $ubicacion_borrar, $nombre, $nombre_ubicacion, $registros_vinculados = false;
 
     protected $rules = [
-        'nombre' => 'required|unique:ubicacions,nombre',
+        'nombre' => 'required|unique:ubicacions,nombre|max:45',
     ];
 
     public function modalCrear()
