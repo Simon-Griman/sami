@@ -48,7 +48,7 @@ return [
     */
 
     'google_fonts' => [
-        'allowed' => true,
+        'allowed' => false,
     ],
 
     /*
@@ -321,6 +321,37 @@ return [
             'url'         => 'resumen',
             'icon'        => 'fas fa-list',
             'can'         => 'resumen.index',
+        ],
+        [
+            'text'        => 'Auditoría',
+            'icon'        => 'fas fa-eye',
+            'can'         => 'auditoria',
+            'submenu'     => [
+                [
+                    'text'        => 'Sesiones',
+                    'url'         => 'sesiones',
+                    'icon'        => 'far fa-circle nav-icon',
+                    'can'         => 'auditoria.sesiones',
+                ],
+                [
+                    'text'        => 'Registros Creados',
+                    'url'         => 'registros_creados',
+                    'icon'        => 'far fa-circle nav-icon',
+                    'can'         => 'notas.salida',
+                ],
+                [
+                    'text'        => 'Registros Eliminados',
+                    'url'         => 'registros_eliminados',
+                    'icon'        => 'far fa-circle nav-icon',
+                    'can'         => 'notas.entrega',
+                ],
+                [
+                    'text'        => 'Registros Editados',
+                    'url'         => 'registros_editados',
+                    'icon'        => 'far fa-circle nav-icon',
+                    'can'         => 'notas.entrega',
+                ],
+            ]
         ],
         ['header' => 'CONFIGURACIÓN'],
         [

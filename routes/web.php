@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SegregacionController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserLoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,8 @@ Route::middleware([
     
         return abort(404, 'El archivo no existe.');
     });
+
+    Route::get('/sesiones', UserLoginController::class)->middleware('can:auditoria.sesiones')->name('sesiones');
 
     Route::get('/ubicaciones', UbicacionController::class)->middleware('can:ubicaciones.index')->name('ubicaciones');
 
