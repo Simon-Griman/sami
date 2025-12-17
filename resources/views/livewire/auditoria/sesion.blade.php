@@ -29,7 +29,7 @@
             </div>
 
             <div class="modal fade" id="borrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
                             <h5 class="modal-title" id="exampleModalLabel">Inicios de Sesión de <b>{{ $name }}</b></h5>
