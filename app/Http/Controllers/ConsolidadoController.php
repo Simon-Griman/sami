@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consolidado;
-use Illuminate\Http\Request;
 
 class ConsolidadoController extends Controller
 {

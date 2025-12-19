@@ -75,14 +75,7 @@ class Index extends Component
 
     public function borrar()
     {
-        $consolidado = Consolidado::find($this->borrar);
-
-        //$user = Auth::User()->name; //saber quien borro el registro
-
-        $consolidado->update([
-            'borrado' => '1',
-            //'user_borrar' => $user,
-        ]);
+        Consolidado::find($this->borrar)->delete();
         
         $this->dispatchBrowserEvent('borrar');
     }
@@ -103,7 +96,6 @@ class Index extends Component
             ->where('destino', 'LIKE', '%' . $this->destino . '%')
             ->where('volumen', 'LIKE', '%' . $this->volumen . '%')
             ->where('operacion','LIKE', '%' . $this->operacion . '%')
-            ->where('borrado', '0')
             ->paginate()
         ;
 

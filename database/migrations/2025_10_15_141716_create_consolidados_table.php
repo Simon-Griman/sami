@@ -25,7 +25,8 @@ class CreateConsolidadosTable extends Migration
             $table->integer('volumen');
             $table->string('operacion', 45);
             $table->string('certificado');
-            $table->enum('borrado', [0, 1])->default('0');
+            //$table->enum('borrado', [0, 1])->default('0');
+            $table->softDeletes();
             $table->foreign('instalacion_id')->references('id')->on('instalacions')->onDelete('cascade');
             $table->foreign('ubicacion_id')->references('id')->on('ubicacions')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
