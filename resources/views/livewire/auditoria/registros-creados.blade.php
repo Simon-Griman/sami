@@ -83,6 +83,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($consolidado)
                                     <tr>
                                         <td>{{ $consolidado->fecha }}</td>
                                         <td>{{ $consolidado->instalacion }}</td>
@@ -94,6 +95,11 @@
                                         <td>{{ $consolidado->volumen }}</td>
                                         <td>{{ $consolidado->operacion }}</td>
                                     </tr>
+                                    @else
+                                    <tr>
+                                        <td colspan="9" class="text-red">El registro fue borrado, puede consultar la información de eliminación en el area de registros eliminados</td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                                 @elseif($name_table == 'ubicacion')
                                 <thead>
@@ -102,9 +108,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($ubicacion)
                                     <tr>
                                         <td>{{ $ubicacion->nombre }}</td>
                                     </tr>
+                                    @else
+                                    <tr>
+                                        <td class="text-red">El registro fue borrado, puede consultar la información de eliminación en el area de registros eliminados</td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                                 @elseif($name_table == 'segregacion')
                                 <thead>
@@ -114,10 +126,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($segregacion)
                                     <tr>
                                         <td>{{ $segregacion->nombre }}</td>
                                         <td>{{ $segregacion->hidrocarburo }}</td>
                                     </tr>
+                                    @else
+                                    <tr>
+                                        <td colspan="2" class="text-red">El registro fue borrado, puede consultar la información de eliminación en el area de registros eliminados</td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                                 @elseif($name_table == 'usuario')
                                 <thead>
@@ -128,17 +146,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($user)
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->cedula }}</td>
                                     </tr>
+                                    @else
+                                    <tr>
+                                        <td colspan="3" class="text-red">El registro fue borrado, puede consultar la información de eliminación en el area de registros eliminados</td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                                 @elseif($name_table == 'cintillo')
                                 <tbody>
+                                    @if ($cintillo)
                                     <tr>
                                         <td><img src="{{ url('storage/' . $cintillo->nombre) }}" alt="" class="cintillo" style="width:100%"></td>
                                     </tr>
+                                    @else
+                                    <tr>
+                                        <td class="text-red">El registro fue borrado, puede consultar la información de eliminación en el area de registros eliminados</td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                                 @elseif($name_table == 'role')
                                 <thead>
@@ -148,7 +178,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        @if ($role)
                                         <td>{{ $role->name }}</td>
+                                        @else
+                                        <td class="text-red">El registro fue borrado, puede consultar la información de eliminación en el area de registros eliminados</td>
+                                        @endif
                                     </tr>
                                 </tbody>
                                 @endif
