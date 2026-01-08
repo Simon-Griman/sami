@@ -3,6 +3,7 @@
 use App\Http\Controllers\CintilloController;
 use App\Http\Controllers\ConsolidadoController;
 use App\Http\Controllers\RegistrosCreadosController;
+use App\Http\Controllers\RegistrosEditadosController;
 use App\Http\Controllers\RegistrosEliminadosController;
 use App\Http\Controllers\ResumenController;
 use App\Http\Controllers\RoleController;
@@ -70,6 +71,8 @@ Route::middleware([
     Route::get('/registros_creados', RegistrosCreadosController::class)->middleware('can:auditoria.registros_creados')->name('registros_creados');
 
     Route::get('/registros_eliminados', RegistrosEliminadosController::class)->middleware('can:auditoria.registros_eliminados')->name('registros_eliminados');
+
+    Route::get('/registros_editados', RegistrosEditadosController::class)->middleware('can:auditoria.registros_editados')->name('registros_editados');
 
     Route::get('/ubicaciones', UbicacionController::class)->middleware('can:ubicaciones.index')->name('ubicaciones');
 
