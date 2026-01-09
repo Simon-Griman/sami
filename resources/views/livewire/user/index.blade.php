@@ -5,6 +5,7 @@
 
                 <table class="table table-responsive table-hover">
                     <thead>
+                        <th>ID</th>
                         <th><input wire:model="nombre" type="text" class="form-control" placeholder="Buscar:"><br>Nombre</th>
                         <th><input wire:model="email" type="text" class="form-control" placeholder="Buscar:"><br>Email</th>
                         <th><input wire:model="cedula" type="text" class="form-control" placeholder="Buscar:"><br>Cedula</th>
@@ -14,6 +15,7 @@
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
+                            <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->cedula }}</td>

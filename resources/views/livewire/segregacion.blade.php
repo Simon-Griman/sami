@@ -11,6 +11,7 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th class="text-center">Acciones</th>
                         </tr>
@@ -18,6 +19,7 @@
                     <tbody>
                     @foreach($segregaciones as $segregacion)
                         <tr>
+                            <td>{{ $segregacion->id }}</td>
                             <td>{{ $segregacion->nombre }}</td>
                             <td>
                                 @can('segregacion.edit')

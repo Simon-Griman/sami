@@ -96,6 +96,7 @@ class Index extends Component
             ->where('destino', 'LIKE', '%' . $this->destino . '%')
             ->where('volumen', 'LIKE', '%' . $this->volumen . '%')
             ->where('operacion','LIKE', '%' . $this->operacion . '%')
+            ->orderBy('consolidados.created_at', 'desc')
             ->paginate()
         ;
 

@@ -11,6 +11,7 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th class="text-center">Acciones</th>
                         </tr>
@@ -18,6 +19,7 @@
                     <tbody>
                     @foreach($ubicaciones as $ubicacion)
                         <tr>
+                            <td>{{ $ubicacion->id }}</td>
                             <td>{{ $ubicacion->nombre }}</td>
                             <td>
                                 @can('ubicaciones.edit')

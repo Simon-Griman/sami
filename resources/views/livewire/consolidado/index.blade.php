@@ -5,6 +5,9 @@
                 <table class="table table-responsive table-hover">
                     <thead>
                         <tr>
+                            @can('users.index')
+                            <th>ID</th>
+                            @endcan
                             <th><input wire:model="fecha_inicio" type="date" class="form-control">
                                 <input wire:model="fecha_final" type="date" class="form-control">
                                 <br>Fecha</th>
@@ -65,6 +68,9 @@
                     <tbody>
                         @foreach ($consolidados as $consolidado)
                         <tr>
+                            @can('users.index')
+                            <td>{{ $consolidado->id_consolidado }}</td>
+                            @endcan
                             <td>{{ $consolidado->fecha }}</td>
                             <td>{{ $consolidado->instalacion }}</td>
                             <td>{{ $consolidado->ubicacion }}</td>
