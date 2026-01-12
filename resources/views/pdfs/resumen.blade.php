@@ -43,16 +43,18 @@
                                 $ano = $fecha->parse($item->fecha)->format('Y');
                                 $mes = $fecha->parse($item->fecha)->format('m');
                             @endphp
-                            <td>{{ $mbd = round($item->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
-                            <td>{{ $mmbls = round($item->total_cantidad / 1000000, 2) }} </td>
+                            <td>{{ round($item->total_cantidad / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2)}}</td>
+                            <td>{{ round($item->total_cantidad / 1000000, 2) }} </td>
                         </tr>
                         @php
                             $total_barriles += $item->total_cantidad;
                             $total_certificados += $item->certificados;
-                            $total_mbd += $mbd;
-                            $total_mmbls += $mmbls;
                         @endphp
                         @endforeach
+                        @php
+                            $total_mbd = round($total_barriles / (($fecha->create($ano, $mes, 1)->daysInMonth) * 1000 ), 2);
+                            $total_mmbls = round($total_barriles / 1000000, 2);
+                        @endphp
                         <tr>
                             <td class="font-weight-bold">Total:</td>
                             <td class="font-weight-bold">{{ $total_barriles }}</td>
