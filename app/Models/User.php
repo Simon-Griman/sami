@@ -34,6 +34,7 @@ class User extends Authenticatable
         'name',
         'email',
         'cedula',
+        'ubicacion_id',
         'password',
         'new_user',
         'profile_photo_path',

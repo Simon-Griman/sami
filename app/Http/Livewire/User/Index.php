@@ -11,7 +11,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $nombre, $email, $cedula, $borrar, $user_borrar;
+    public $nombre, $email, $cedula, $ubicacion, $borrar, $user_borrar;
 
     protected $paginationTheme = "bootstrap";
 
@@ -26,6 +26,11 @@ class Index extends Component
     }
 
     public function updatingCedula()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingUbicacion()
     {
         $this->resetPage();
     }
@@ -45,13 +50,17 @@ class Index extends Component
 
     public function render()
     {
-        $users = User::select('users.id' ,'name', 'email', 'cedula')
+        $users = User::select('users.id' ,'name', 'email', 'cedula', 'ubicacions.nombre as ubicacion')
+            ->join('ubicacions', 'ubicacions.id', '=', 'ubicacion_id')
             ->where('name', 'LIKE', '%' . $this->nombre . '%')
             ->where('email', 'LIKE', '%' . $this->email . '%')
             ->where('cedula', 'LIKE', '%' . $this->cedula . '%')
+            ->where('ubicacions.nombre', 'LIKE', '%' . $this->ubicacion . '%')
             ->paginate()
         ;
 
-        return view('livewire.user.index', compact('users'));
+        $ubicaciones = Ubicacion::orderBy('nombre')->get();
+
+        return view('livewire.user.index', compact('users', 'ubicaciones'));
     }
 }

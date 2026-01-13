@@ -23,6 +23,17 @@
                         </div>
 
                         <div class="form-group col-12">
+                            <label for="cedula">Cedula del Usuario</label>
+                            <select class="form-control @error('ubicacion') is-invalid @enderror" wire:model="ubicacion">
+                                <option value="">-- Seleccionar --</option>                            
+                                @foreach ($ubicaciones as $ubicacion)
+                                    <option value="{{ $ubicacion->id }}">{{ $ubicacion->nombre }}</option>
+                                @endforeach
+                            </select>
+                            @error('ubicacion') <span class="text-red">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="form-group col-12">
                             <label for="role">Lista de Roles</label>
                             {{--<select name="role" id="" class="form-control @error('cedula') is-invalid @enderror" wire:model="role">
                                 <option value="">--Seleccionar--</option>

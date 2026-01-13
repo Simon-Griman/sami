@@ -2,27 +2,50 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Ubicacion;
 use App\Models\User;
 use Livewire\Component;
 
 class Edit extends Component
 {
-    public $id_user;
+    public $id_user, $user, $ubicacion;
 
-    public function editar()
+    protected $rules = [
+        'ubicacion' => 'required',
+    ];
+
+    public function mount()
     {
-        $user = User::find($this->id_user);
+        $this->user = User::find($this->id_user);
 
-        $user->update([
-            'password' => bcrypt($user->cedula),
+        $this->ubicacion = $this->user->ubicacion_id;
+    }
+
+    public function ubicacion()
+    {
+        $this->validate();
+
+        $this->user->update([
+            'ubicacion_id' => $this->ubicacion,
+        ]);
+
+        return redirect()->route('users.edit', $this->user)->with('info', 'Ubicación Actualizada con Exito');
+    }
+
+    public function pass()
+    {
+        $this->user->update([
+            'password' => bcrypt($this->user->cedula),
             'new_user' => '1',
         ]);
 
-        return redirect()->route('users.edit', $user)->with('info', 'Contraseña Actualizada con Exito');
+        return redirect()->route('users.edit', $this->user)->with('info', 'Contraseña Actualizada con Exito');
     }
 
     public function render()
     {
-        return view('livewire.user.edit');
+        $ubicaciones = Ubicacion::orderBy('nombre')->get();
+
+        return view('livewire.user.edit', compact('ubicaciones'));
     }
 }
