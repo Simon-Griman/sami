@@ -84,10 +84,69 @@
                         </div>
                         <div class="form-group col-12">
                             <label for="certificado">Cargar Certificado</label><br>
-                            <input type="file" wire:model="certificado" id="certificado"><br>
-                            @error('certificado') <span class="error text-red">{{ $message }}</span> @enderror
+                            <div class="w-100">
+                                <div
+                                    x-data="{ isUploading: false, progress: 0, isDropping: false }"
+                                    x-on:livewire-upload-start="isUploading = true"
+                                    x-on:livewire-upload-finish="isUploading = false"
+                                    x-on:livewire-upload-error="isUploading = false"
+                                    x-on:livewire-upload-progress="progress = $event.detail.progress"
+                                    class="position-relative"
+                                >
+                                    <div 
+                                        class="card border-2 text-center p-4 transition-all"
+                                        :class="isDropping ? 'border-primary bg-light' : 'border-secondary'"
+                                        style="border-style: dashed !important; min-height: 180px;"
+                                    >
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                            
+                                            <input 
+                                                type="file" 
+                                                class="input-hidden-custom"
+                                                wire:model="certificado"
+                                                x-on:dragover="isDropping = true"
+                                                x-on:dragleave="isDropping = false"
+                                                x-on:drop="isDropping = false"
+                                            >
+
+                                            <div class="py-2">
+                                                <div class="mb-3">
+                                                    <i class="bi bi-cloud-arrow-up-fill text-primary" style="font-size: 2.5rem;"></i>
+                                                </div>
+                                                <h6 class="fw-bold mb-1">Arrastra tu certificado aquí</h6>
+                                                <p class="text-muted small mb-2">o haz clic para buscar en tu equipo</p>
+                                                <span class="badge rounded-pill bg-light text-dark border fw-normal">
+                                                    PDF (Máx. 2MB)
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div x-show="isUploading" class="progress mt-2" style="height: 5px;">
+                                        <div class="progress-bar" :style="`width: ${progress}%`Ratio"></div>
+                                    </div>
+
+                                    <div wire:loading wire:target="certificado" class="text-primary small mt-1">
+                                        <div class="spinner-border spinner-border-sm" role="status"></div>
+                                        Subiendo archivo...
+                                    </div>
+
+                                    @if ($certificado)
+                                        <div class="alert alert-success mt-2 d-flex align-items-center justify-content-between py-2">
+                                            <span>
+                                                <i class="bi bi-file-earmark-check-fill me-2"></i>
+                                                {{ $certificado->getClientOriginalName() }}
+                                            </span>
+                                            <button type="button" class="btn btn-sm btn-danger" wire:click="$set('certificado', null)">
+                                                Quitar
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        
+                        @error('certificado') <span class="error text-red">{{ $message }}</span> @enderror
+
                         <div class="text-center col-12">
                             <button class="btn btn-primary m-4" type="submit">Actualizar</button>
                             <a href="{{ route('consolidado.index') }}" class="btn btn-danger">Cancelar</a>
@@ -97,4 +156,5 @@
             </div>
         </div>
     </div>
+    <script defer src="{{ url('js/alpine.js') }}"></script>
 </div>
