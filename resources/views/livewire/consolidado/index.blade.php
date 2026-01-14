@@ -20,6 +20,7 @@
                                 </select>
                                 <br>Instalación
                             </th>
+                            @if ($mi_ubicacion == $sede)
                             <th>
                                 <select class="form-control" wire:model="ubicacion">
                                     <option value="">Todo</option>                            
@@ -29,6 +30,7 @@
                                 </select>
                                 <br>Ubicación
                             </th>
+                            @endif
                             <th><input wire:model="cliente" type="text" class="form-control"><br>Cliente</th>
                             <th>
                                 <select class="form-control" wire:model="producto">
@@ -73,7 +75,9 @@
                             @endcan
                             <td>{{ $consolidado->fecha }}</td>
                             <td>{{ $consolidado->instalacion }}</td>
+                            @if ($mi_ubicacion == $sede)
                             <td>{{ $consolidado->ubicacion }}</td>
+                            @endif
                             <td>{{ $consolidado->cliente }}</td>
                             <td>{{ $consolidado->producto }}</td>
                             <td>{{ $consolidado->segregacion }}</td>

@@ -19,6 +19,7 @@
                             </select>
                             @error('instalacion') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
+                        @if ($mi_ubicacion == $sede)
                         <div class="form-group col-12">
                             <label for="ubicacion">Ubicación</label>
                             <select name="" id="ubicacion" class="form-control @error('ubicacion') is-invalid @enderror" wire:model="ubicacion">
@@ -29,6 +30,13 @@
                             </select>
                             @error('ubicacion') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
+                        @else
+                        <div class="form-group col-12">
+                            <label for="ubicacion">Ubicación</label>
+                            <input type="text" disabled value="{{ $ubicacion_actual->nombre }}" class="form-control">
+                            
+                        </div>
+                        @endif
                         <div class="form-group col-12">
                             <label for="cliente">Cliente</label>
                             <input type="text" class="form-control @error('cliente') is-invalid @enderror" id="cliente" wire:model="cliente">

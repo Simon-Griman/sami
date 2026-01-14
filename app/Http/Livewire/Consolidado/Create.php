@@ -7,7 +7,8 @@ use App\Models\Instalacion;
 use App\Models\Producto;
 use App\Models\Segregacion;
 use App\Models\Ubicacion;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,7 +16,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $operacion, $productos, $segregaciones;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $operacion, $productos, $segregaciones, $mi_ubicacion, $sede, $ubicacion_actual;
 
     protected $rules = [
         'fecha' => 'required|date|after_or_equal:2007-01-01|before_or_equal:today',
@@ -35,6 +36,12 @@ class Create extends Component
         $this->productos = Producto::orderBy('nombre')->get();
 
         $this->segregaciones = collect();
+
+        $this->mi_ubicacion = User::find(Auth::id())->ubicacion_id;
+
+        $this->sede = Ubicacion::where('nombre', 'Sede')->first()->id;
+
+        $this->ubicacion_actual = Ubicacion::find($this->mi_ubicacion);
     }
 
     public function updatedProducto($value)
@@ -61,6 +68,11 @@ class Create extends Component
 
     public function crear()
     {
+        if ($this->mi_ubicacion != $this->sede)
+        {
+            $this->ubicacion = $this->mi_ubicacion;
+        }
+        
         $this->validate();
 
         $nombre = $this->certificado->store('certificados', 'public');

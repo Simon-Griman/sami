@@ -7,6 +7,8 @@ use App\Models\Instalacion;
 use App\Models\Producto;
 use App\Models\Segregacion;
 use App\Models\Ubicacion;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -15,7 +17,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $fecha_inicio, $fecha_final, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $operacion, $borrar, $c_borrar;
+    public $fecha_inicio, $fecha_final, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $operacion, $borrar, $c_borrar, $mi_ubicacion, $sede;
 
     protected $paginationTheme = "bootstrap";
 
@@ -23,6 +25,10 @@ class Index extends Component
     {
         $this->fecha_inicio = Consolidado::min('fecha');
         $this->fecha_final = Consolidado::max('fecha');
+
+        $this->mi_ubicacion = User::find(Auth::id())->ubicacion_id;
+
+        $this->sede = Ubicacion::where('nombre', 'Sede')->first()->id;
     }
 
     public function updatingFecha()
@@ -96,9 +102,14 @@ class Index extends Component
             ->where('destino', 'LIKE', '%' . $this->destino . '%')
             ->where('volumen', 'LIKE', '%' . $this->volumen . '%')
             ->where('operacion','LIKE', '%' . $this->operacion . '%')
-            ->orderBy('consolidados.created_at', 'desc')
-            ->paginate()
         ;
+
+        if ($this->mi_ubicacion != $this->sede)
+        {
+            $consolidados->where('ubicacions.id', $this->mi_ubicacion);
+        }
+
+        $consolidados = $consolidados->orderBy('consolidados.created_at', 'desc')->paginate();
 
         $instalaciones = Instalacion::orderBy('nombre')->get();
         $ubicaciones = Ubicacion::orderBy('nombre')->get();

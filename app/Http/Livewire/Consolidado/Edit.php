@@ -7,6 +7,8 @@ use App\Models\Instalacion;
 use App\Models\Producto;
 use App\Models\Segregacion;
 use App\Models\Ubicacion;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -17,7 +19,7 @@ class Edit extends Component
 
     public $consolidado;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente, $operacion, $productos, $segregaciones;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente, $operacion, $productos, $segregaciones, $mi_ubicacion, $sede, $ubicacion_actual;
 
     public function mount()
     {
@@ -34,16 +36,17 @@ class Edit extends Component
 
         $this->productos = Producto::orderBy('nombre')->get();
 
+        $this->mi_ubicacion = User::find(Auth::id())->ubicacion_id;
+
+        $this->sede = Ubicacion::where('nombre', 'Sede')->first()->id;
+
+        $this->ubicacion_actual = Ubicacion::find($this->ubicacion);
+
         $hidrocarburo = '';
 
-        if ($this->producto == 1)
-        {
-            $hidrocarburo = 'Producto';
-        }
-        else if ($this->producto == 2)
-        {
-            $hidrocarburo = 'Crudo';
-        }
+        if ($this->producto == 1) $hidrocarburo = 'Producto';
+
+        else if ($this->producto == 2) $hidrocarburo = 'Crudo';
 
         $this->segregaciones = Segregacion::where('hidrocarburo', $hidrocarburo)->orderBy('nombre')->get();;
     }
