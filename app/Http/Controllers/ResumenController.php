@@ -57,9 +57,11 @@ class ResumenController extends Controller
         $mes_ubicacion = $selectedMonth;
         $ano_producto = $selectedYear;
         $ano_ubicacion = $selectedYear;
-        
 
-        $pdf = Pdf::loadView('pdfs.resumen', ['mes_producto' => $mes_producto, 'mes_ubicacion' => $mes_ubicacion, 'ano_producto' => $ano_producto, 'ano_ubicacion' => $ano_ubicacion, 'resumen' => $resumen, 'fecha' => $fecha, 'tipo' => $tipo, 'total_barriles' => $total_barriles, 'total_certificados' => $total_certificados, 'total_mbd' => $total_mbd, 'total_mmbls' => $total_mmbls]);
+        $ano = date('Y');
+        $mes = date('m');
+
+        $pdf = Pdf::loadView('pdfs.resumen', ['mes_producto' => $mes_producto, 'mes_ubicacion' => $mes_ubicacion, 'ano_producto' => $ano_producto, 'ano_ubicacion' => $ano_ubicacion, 'resumen' => $resumen, 'fecha' => $fecha, 'tipo' => $tipo, 'total_barriles' => $total_barriles, 'total_certificados' => $total_certificados, 'total_mbd' => $total_mbd, 'total_mmbls' => $total_mmbls, 'ano' => $ano, 'mes' => $mes]);
 
         return $pdf->stream('resumen.pdf');
     }

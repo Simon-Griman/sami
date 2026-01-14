@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Resumen extends Component
 {
-    public $selectedMonth, $selectedMonth2, $selectedYear, $selectedYear2, $mbd, $mbd2, $mmbls, $mmbls2, $total_barriles, $total_barriles2, $total_certificados, $total_certificados2, $total_mbd, $total_mbd2, $total_mmbls, $total_mmbls2, $selectedOperacion, $selectedOperacion2;
+    public $selectedMonth, $selectedMonth2, $selectedYear, $selectedYear2, $mbd, $mbd2, $mmbls, $mmbls2, $total_barriles, $total_barriles2, $total_certificados, $total_certificados2, $total_mbd, $total_mbd2, $total_mmbls, $total_mmbls2, $selectedOperacion, $selectedOperacion2, $ano, $mes;
 
     public function mount()
     {
@@ -17,6 +17,9 @@ class Resumen extends Component
         $this->selectedMonth = date('m');
         $this->selectedYear2 = date('Y');
         $this->selectedMonth2 = date('m');
+
+        $this->ano = date('Y');
+        $this->mes = date('m');
     }
 
     public function render()
