@@ -56,5 +56,6 @@ class UbicacionSeeder extends Seeder
         Ubicacion::create(['nombre' => 'Santa Elena de Uairen']);
         Ubicacion::create(['nombre' => 'Caicara del Orinoco']);
         Ubicacion::create(['nombre' => 'San Antonio']);
+        Ubicacion::create(['nombre' => 'Sede']);
     }
 }

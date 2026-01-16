@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'simongrimanv@hotmail.com',
             'cedula' => '26716044', 
             'password' => bcrypt('simonG20'),
+            'ubicacion_id' => 43,
         ])->assignRole('Super-Admin');
     }
 }
