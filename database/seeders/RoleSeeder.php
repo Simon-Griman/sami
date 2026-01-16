@@ -26,6 +26,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'consolidado.create'])->syncRoles([$rolAdmin, $rolConsolidado]);
         Permission::create(['name' => 'consolidado.edit'])->syncRoles([$rolAdmin, $rolConsolidado]);
         Permission::create(['name' => 'consolidado.delete'])->syncRoles([$rolAdmin, $rolConsolidado]);
+        Permission::create(['name' => 'consolidado.id'])->syncRoles([$rolAdmin]);
 
         Permission::create(['name' => 'resumen.index'])->syncRoles([$rolAdmin, $rolResumen]);
         Permission::create(['name' => 'resumen.pdf'])->syncRoles([$rolAdmin, $rolResumen]);

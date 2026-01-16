@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UbicacionSeeder::class);
         $this->call(SegregacionSeeder::class);
         $this->call(UserSeeder::class);
-        //$this->call(ConsolidadoSeeder::class);
+        $this->call(ConsolidadoSeeder::class);
     }
 }
