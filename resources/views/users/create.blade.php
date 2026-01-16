@@ -2,11 +2,9 @@
 
 @section('title', 'Usuarios')
 
-@livewireStyles
-
 @section('content')
+    @livewireStyles
     <br>
     @livewire('user.create')
+    @livewireScripts
 @stop
-
-@livewireScripts

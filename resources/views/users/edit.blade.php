@@ -6,10 +6,9 @@
     <link rel="stylesheet" href="{{ url('css/toastr.css') }}">
 @stop
 
-@livewireStyles
-
 @section('content')
-    
+    @livewireStyles
+
     @if (session('info'))
         @section('js')
         <script src="{{ url('js/jquery.js') }}"></script>
@@ -72,6 +71,5 @@
             @endcan
         </div>
     </div>
+    @livewireScripts
 @stop
-
-@livewireScripts
