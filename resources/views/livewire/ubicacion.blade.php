@@ -109,7 +109,8 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <h5>¿Realmente desea borrar <b>{{ $ubicacion_borrar }}</b> de la lista?</h5>
+                                <h5>{{ $ubicacion_borrar }}</b> posee registros vinculados, ¿esta realamente seguro de borrarlo?</h5>
+                                <p class="text-danger">Todos los registros vinculados a <strong>{{ $ubicacion_borrar }}</strong> seran eliminados</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

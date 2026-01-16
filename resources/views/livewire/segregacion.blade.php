@@ -126,6 +126,7 @@
                             </div>
                             <div class="modal-body">
                                 <h5><b>{{ $segregacion_borrar }}</b> posee registros vinculados, ¿esta realamente seguro de borrarlo?</h5>
+                                <p class="text-danger">Todos los registros vinculados a <strong>{{ $segregacion_borrar }}</strong> seran eliminados</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click.defer="limpiarCampos()">Cancelar</button>

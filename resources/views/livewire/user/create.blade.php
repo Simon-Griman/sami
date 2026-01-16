@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="form-group col-12">
-                            <label for="cedula">Cedula del Usuario</label>
+                            <label for="cedula">Ubicación del Usuario</label>
                             <select class="form-control @error('ubicacion') is-invalid @enderror" wire:model="ubicacion">
                                 <option value="">-- Seleccionar --</option>                            
                                 @foreach ($ubicaciones as $ubicacion)
