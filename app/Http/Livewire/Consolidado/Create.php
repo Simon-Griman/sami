@@ -8,6 +8,7 @@ use App\Models\Producto;
 use App\Models\Segregacion;
 use App\Models\Ubicacion;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -18,18 +19,21 @@ class Create extends Component
 
     public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $operacion, $productos, $segregaciones, $mi_ubicacion, $sede, $ubicacion_actual;
 
-    protected $rules = [
-        'fecha' => 'required|date|after_or_equal:2007-01-01|before_or_equal:today',
-        'instalacion' => 'required',
-        'ubicacion' => 'required',
-        'cliente' => 'required|max:45',
-        'producto' => 'required',
-        'segregacion' => 'required',
-        'destino' => 'required|max:45',
-        'volumen' => 'required|integer',
-        'operacion' => 'required',
-        'certificado' => 'required|file|mimes:pdf|max:2048',
-    ];
+    protected function rules()
+    {
+        return [
+            'fecha' => 'required|date|after_or_equal:' . now()->startOfMonth()->format('Y-m-d') . '|before_or_equal:today',
+            'instalacion' => 'required',
+            'ubicacion' => 'required',
+            'cliente' => 'required|max:45',
+            'producto' => 'required',
+            'segregacion' => 'required',
+            'destino' => 'required|max:45',
+            'volumen' => 'required|integer',
+            'operacion' => 'required',
+            'certificado' => 'required|file|mimes:pdf|max:2048',
+        ];
+    }
 
     public function mount()
     {
