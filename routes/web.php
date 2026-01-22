@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CintilloController;
 use App\Http\Controllers\ConsolidadoController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrosCreadosController;
 use App\Http\Controllers\RegistrosEditadosController;
 use App\Http\Controllers\RegistrosEliminadosController;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::middleware([
@@ -34,11 +35,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
+    Route::get('/house', [HomeController::class, 'index'])->name('house');
     
     Route::get('/home', function () {
         if (Auth::User()->new_user == '0')
         {
-            return view('index');
+            return redirect()->route('house');
         }
         else if (Auth::User()->new_user == '1')
         {

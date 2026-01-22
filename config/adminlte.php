@@ -134,7 +134,7 @@ return [
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -307,7 +307,7 @@ return [
         ],
         [
             'text'        => 'Inicio',
-            'url'         => 'home',
+            'url'         => 'house',
             'icon'        => 'fas fa-home',
         ],
         [
@@ -384,12 +384,6 @@ return [
             'icon'        => 'fas fa-wrench',
             'can'         => 'roles.index',
         ],
-        [
-            'text' => 'profile',
-            'url'  => 'user/profile',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        
     ],
 
     /*

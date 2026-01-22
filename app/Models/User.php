@@ -80,4 +80,8 @@ class User extends Authenticatable
 
         //return 'Admin'; //provisional
     }
+
+    public function adminlte_profile_url(){
+        return 'user/profile';
+    }
 }
