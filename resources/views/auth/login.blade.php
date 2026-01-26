@@ -50,6 +50,7 @@
                                 {{ __('Forgot your password?') }}
                             </a>
                         @endif--}}
+                        <!--TODO: enviar mensaje de olvido su contraseña al administrador-->
 
                         <x-jet-button>
                             {{ __('Log in') }}
