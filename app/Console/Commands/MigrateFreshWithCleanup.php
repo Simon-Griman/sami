@@ -38,18 +38,33 @@ class MigrateFreshWithCleanup extends Command
      */
     public function handle()
     {
+        $borrar = false;
+
         $this->info('Limpiando la carpeta de imágenes del storage...');
 
-        $filesToDelete = Storage::disk('public')->allFiles('images');
+        $imagesToDelete = Storage::disk('public')->allFiles('images');
+
+        $filesToDelete = Storage::disk('public')->allFiles('certificados');
+
+        if (!empty($imagesToDelete))
+        {
+            Storage::disk('public')->delete($imagesToDelete);
+
+            $this->info(count($imagesToDelete) . ' archivos eliminados de la carpeta images');
+
+            $borrar = true;
+        }
 
         if (!empty($filesToDelete))
         {
             Storage::disk('public')->delete($filesToDelete);
 
-            $this->info(count($filesToDelete) . ' archivos eliminados de la carpeta images');
+            $this->info(count($filesToDelete) . ' archivos eliminados de la carpeta certificados');
+
+            $borrar = true;
         }
 
-        else
+        if (!$borrar)
         {
             $this->warn('No se encontraron archivos para eliminar en la carpeta images');
         }

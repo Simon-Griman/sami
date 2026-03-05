@@ -68,6 +68,10 @@ class Edit extends Component
         $this->segregacion = $this->segregaciones->first()->id ?? null;
     }
 
+    protected $casts = [
+        'volumen' => 'decimal:2',
+    ];
+
     protected function rules()
     {
         return [
@@ -78,9 +82,9 @@ class Edit extends Component
             'producto' => 'required',
             'segregacion' => 'required',
             'destino' => 'required|max:45',
-            'volumen' => 'required|integer',
+            'volumen' => 'required|numeric|min:0|regex:/^\d{1,6}(\.\d{1,2})?$/',
             'operacion' => 'required',
-            'certificado' => 'required|file|mimes:pdf|max:2048',
+            'certificado' => 'nullable|file|mimes:pdf|max:2048',
         ];
     }
 

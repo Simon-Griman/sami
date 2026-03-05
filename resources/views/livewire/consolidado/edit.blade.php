@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group col-12">
                             <label for="volumen">Volumen Neto</label>
-                            <input type="number" class="form-control @error('volumen') is-invalid @enderror" id="volumen" wire:model="volumen" value="{{ $consolidado->volumen }}">
+                            <input type="decimal" class="form-control @error('volumen') is-invalid @enderror" id="volumen" wire:model="volumen" value="{{ $consolidado->volumen }}">
                             @error('volumen') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group col-12">
