@@ -4,7 +4,6 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ url('css/toastr.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
     <style>
         /* Ocultamos el botón nativo de forma agresiva */
