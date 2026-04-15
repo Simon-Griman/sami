@@ -63,11 +63,6 @@
                             @error('segregacion') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group col-12">
-                            <label for="destino">Destino</label>
-                            <input type="text" class="form-control @error('destino') is-invalid @enderror" id="destino" wire:model="destino">
-                            @error('destino') <span class="text-red">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="form-group col-12">
                             <label for="volumen">Volumen Neto</label>
                             <input type="decimal" class="form-control @error('volumen') is-invalid @enderror" id="volumen" wire:model="volumen">
                             @error('volumen') <span class="text-red">{{ $message }}</span> @enderror
@@ -81,6 +76,16 @@
                                 <option value="Despacho">Despacho</option>
                             </select>
                             @error('operacion') <span class="text-red">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="destino">Destino</label>
+                            <input type="text" class="form-control @error('destino') is-invalid @enderror" id="destino" wire:model="destino" @if($operacion == 'Recibo') disabled @endif>
+                            @error('destino') <span class="text-red">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="origen">Origen</label>
+                            <input type="text" class="form-control @error('origen') is-invalid @enderror" id="origen" wire:model="origen" @if($operacion == 'Venta' || $operacion == 'Despacho') disabled @endif>
+                            @error('origen') <span class="text-red">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group col-12">
                             <label for="certificado">Cargar Certificado</label><br>

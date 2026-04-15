@@ -19,7 +19,7 @@ class Edit extends Component
 
     public $consolidado;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $volumen, $certificado, $certificado_existente, $operacion, $productos, $segregaciones, $mi_ubicacion, $sede, $ubicacion_actual;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $origen, $volumen, $certificado, $certificado_existente, $operacion, $productos, $segregaciones, $mi_ubicacion, $sede, $ubicacion_actual;
 
     public function mount()
     {
@@ -30,6 +30,7 @@ class Edit extends Component
         $this->producto = $this->consolidado->producto_id;
         $this->segregacion = $this->consolidado->segregacion_id;
         $this->destino = $this->consolidado->destino;
+        $this->origen = $this->consolidado->origen;
         $this->volumen = $this->consolidado->volumen;
         $this->operacion = $this->consolidado->operacion;
         $this->certificado_existente = $this->consolidado->certificado;
@@ -81,7 +82,8 @@ class Edit extends Component
             'cliente' => 'required|max:45',
             'producto' => 'required',
             'segregacion' => 'required',
-            'destino' => 'required|max:45',
+            'destino' => 'required_if:operacion,Venta,Despacho|max:45',
+            'origen' => 'required_if:operacion,Recibo|max:45',
             'volumen' => 'required|numeric|min:0|regex:/^\d{1,6}(\.\d{1,2})?$/',
             'operacion' => 'required',
             'certificado' => 'nullable|file|mimes:pdf|max:2048',
@@ -111,6 +113,15 @@ class Edit extends Component
             $nombre = $consolidado->certificado;
         }
 
+        if ($this->operacion == 'Recibo')
+        {
+            $this->destino = '';
+        }
+        elseif ($this->operacion == 'Venta' || $this->operacion == 'Despacho')
+        {
+            $this->origen = '';
+        }
+
         $consolidado->update([
             'fecha' => $this->fecha,
             'instalacion_id' => $this->instalacion,
@@ -119,6 +130,7 @@ class Edit extends Component
             'producto_id' => $this->producto,
             'segregacion_id' => $this->segregacion,
             'destino' => $this->destino,
+            'origen' => $this->origen,
             'volumen' => $this->volumen,
             'operacion' => $this->operacion,
             'certificado' => $nombre

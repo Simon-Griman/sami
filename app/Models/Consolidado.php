@@ -21,6 +21,7 @@ class Consolidado extends Model
         'producto_id',
         'segregacion_id',
         'destino',
+        'origen',
         'volumen',
         'operacion',
         'certificado',
