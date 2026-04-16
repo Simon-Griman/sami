@@ -51,6 +51,7 @@
                                 <br>Segregación
                             </th>
                             <th><input wire:model="destino" type="text" class="form-control"><br>Destino</th>
+                            <th><input wire:model="origen" type="text" class="form-control"><br>Origen</th>
                             <th><input wire:model="volumen" type="number" class="form-control"><br>Volumen</th>
                             <th>
                                 <select class="form-control" wire:model="operacion">
@@ -82,6 +83,7 @@
                             <td>{{ $consolidado->producto }}</td>
                             <td>{{ $consolidado->segregacion }}</td>
                             <td>{{ $consolidado->destino }}</td>
+                            <td>{{ $consolidado->origen }}</td>
                             <td>{{ $consolidado->volumen }}</td>
                             <td>{{ $consolidado->operacion }}</td>
 
