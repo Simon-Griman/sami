@@ -22,7 +22,7 @@ class CreateConsolidadosTable extends Migration
             $table->unsignedBigInteger('producto_id');
             $table->unsignedBigInteger('segregacion_id');
             $table->string('destino', 45);
-            $table->integer('volumen');
+            $table->decimal('volumen', 8, 2);
             $table->string('operacion', 45);
             $table->string('certificado');
             //$table->enum('borrado', [0, 1])->default('0');

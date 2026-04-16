@@ -26,7 +26,7 @@ class AddOrigenColumnToConsolidados extends Migration
     public function down()
     {
         Schema::table('consolidados', function (Blueprint $table) {
-            //
+            $table->dropColumn('origen');
         });
     }
 }
