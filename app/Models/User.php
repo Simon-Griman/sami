@@ -84,4 +84,9 @@ class User extends Authenticatable
     public function adminlte_profile_url(){
         return 'user/profile';
     }
+
+    public function ubicaciones()
+    {
+        return $this->belongsToMany(Ubicacion::class);
+    }
 }
