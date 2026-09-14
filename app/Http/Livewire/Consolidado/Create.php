@@ -17,7 +17,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $origen, $volumen, $certificado, $operacion, $productos, $segregaciones, $mi_ubicacion, $sede, $ubicacion_actual;
+    public $fecha, $instalacion, $ubicacion, $cliente, $producto, $segregacion, $destino, $origen, $volumen, $certificado, $operacion, $productos, $segregaciones, $mi_ubicacion, $sede;
 
     protected $casts = [
         'volumen' => 'decimal:2',
@@ -49,8 +49,6 @@ class Create extends Component
         $this->mi_ubicacion = User::find(Auth::id())->ubicacion_id;
 
         $this->sede = Ubicacion::where('nombre', 'Sede')->first()->id;
-
-        $this->ubicacion_actual = Ubicacion::find($this->mi_ubicacion);
     }
 
     public function updatedProducto($value)
@@ -117,7 +115,7 @@ class Create extends Component
     public function render()
     {
         $instalacions = Instalacion::orderBy('nombre')->get();
-        $ubicacions = Ubicacion::orderBy('nombre')->get();
+        $ubicacions = auth()->user()->ubicaciones()->orderBy('nombre')->get();
 
         return view('livewire.consolidado.create', compact('instalacions', 'ubicacions'));
     }
